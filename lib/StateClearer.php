@@ -3,7 +3,7 @@
 namespace SimpleSAML\TestUtils;
 
 use SimpleSAML\Configuration;
-use SimpleSAML\Metadata\MetadataStorageHandler;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 
