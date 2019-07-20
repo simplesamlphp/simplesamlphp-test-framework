@@ -43,11 +43,11 @@ class SigningTestCase extends TestCase
     /** @var string $ca_certificate */
     protected $ca_certificate;
 
-    // openssl genrsa -out simplesamlphp.example.org.key 1024
+    // openssl genrsa -out signed.example.org.key 1024
     /** @var string $good_private_key */
     protected $good_private_key;
 
-    // openssl req -key simplesamlphp.example.org.key -new -out simplesamlphp.example.org.crt
+    // openssl req -key signed.example.org.key -new -out signed.example.org.crt
     /** @var string $good_certificate */
     protected $good_certificate;
 
