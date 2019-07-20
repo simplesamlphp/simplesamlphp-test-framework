@@ -23,6 +23,7 @@
         "vimeo/psalm": "1.1.9"
     },
     "require-dev": {
+        "ext-curl": "*",
         "ext-krb5": "*",
         "simplesamlphp/simplesamlphp": "dev-master"
     },
