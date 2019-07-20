@@ -9,6 +9,7 @@ for i in `find . -path ./vendor -prune -o -name '*.json' -print`
 do
     if [ -f "$i" ]; then
         FILE="${i%/*}/${i##*/}"
+        echo "Checking file $i"
         $PHP -r "exit((json_decode(file_get_contents('$FILE')) === null) ? 1 : 0);"
         if ! $PHP -l "$FILE" > /dev/null 2>&1
         then
