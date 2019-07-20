@@ -23,7 +23,7 @@
         "vimeo/psalm": "1.1.9"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp": "^1.17"
+        "simplesamlphp/simplesamlphp": "dev-master"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
