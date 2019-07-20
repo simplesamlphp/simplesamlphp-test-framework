@@ -31,8 +31,8 @@ class ReduceSpillOverTest extends ClearStateTestCase
      */
     public function testStateRemoved()
     {
-
         $this->assertArrayNotHasKey('QUERY_STRING', $_SERVER);
+        /** @var false $env */
         $this->assertFalse(getenv('SIMPLESAMLPHP_CONFIG_DIR'));
         try {
             Configuration::getInstance();
