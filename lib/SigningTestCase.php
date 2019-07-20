@@ -30,10 +30,10 @@ class SigningTestCase extends TestCase
     protected $ca_certificate_file = 'example.org-ca.crt';
 
     /** @var string $good_private_key_file */
-    protected $good_private_key_file = 'simplesamlphp.example.org_nopasswd.key';
+    protected $good_private_key_file = 'signed.example.org_nopasswd.key';
 
     /** @var string $good_certificate_file */
-    protected $good_certificate_file = 'simplesamlphp.example.org.crt';
+    protected $good_certificate_file = 'signed.example.org.crt';
 
     // openssl genrsa -out example.org-ca.key 1024
     /** @var string $ca_private_key */
