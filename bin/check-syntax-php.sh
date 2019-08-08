@@ -10,7 +10,6 @@ do
     if [ -f "$i" ]; then
         FILE="${i%/*}/${i##*/}"
         echo "Checking file $i"
-        $PHP -l $FILE > /dev/null 2>&1
         if ! $PHP -l "$FILE" > /dev/null 2>&1
         then
             echo "Syntax check failed for ${FILE}"
