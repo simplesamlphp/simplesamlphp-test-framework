@@ -5,7 +5,7 @@ shopt -s globstar
 PHP='/usr/bin/env php'
 RETURN=0
 
-for i in `find . -path ./vendor -prune -o -path ./node_modules -prune -o -name '*.yml' -print`
+for i in `find . -path ./vendor -prune -o -path ./node_modules -prune -name '*.yml' -o -name '*.yaml' -print`
 do
     if [ -f "$i" ]; then
         FILE="${i%/*}/${i##*/}"
