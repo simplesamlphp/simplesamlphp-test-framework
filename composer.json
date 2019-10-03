@@ -15,6 +15,12 @@
             "SimpleSAML\\TestUtils\\": "lib/"
         }
     },
+    "bin": [
+        "bin/check-syntax-json.sh",
+        "bin/check-syntax-php.sh",
+        "bin/check-syntax-xml.sh",
+        "bin/check-syntax-yaml.sh"
+    ],
     "require": {
         "php": ">=5.6",
 
