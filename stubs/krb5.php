@@ -4,9 +4,9 @@ class KRB5NegotiateAuth
 {
     /**
      * @param string $keytab
-     * @param string $spn
+     * @param string $spn|null
      */
-    public function __construct($keytab, $spn)
+    public function __construct($keytab, $spn = null)
     {
     }
 
