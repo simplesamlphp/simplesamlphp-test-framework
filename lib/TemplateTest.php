@@ -1,10 +1,4 @@
 <?php
-/**
- * Simple test for syntax-checking Twig-templates.
- *
- * @author Tim van Dijen <tvdijen@gmail.com>
- * @package SimpleSAMLphp
- */
 
 namespace SimpleSAML\TestUtils;
 
@@ -16,6 +10,11 @@ use Twig\Error\SyntaxError;
 use Twig\Source;
 
 /**
+ * Simple test for syntax-checking Twig-templates.
+ *
+ * @author Tim van Dijen <tvdijen@gmail.com>
+ * @package SimpleSAMLphp
+ *
  * @psalm-suppress InternalMethod
  */
 class TemplateTest extends TestCase
@@ -62,7 +61,7 @@ class TemplateTest extends TestCase
                 $files = array_diff(scandir($basedir), ['.', '..']);
                 foreach ($files as $file) {
                     if (preg_match('/.twig$/', $file)) {
-                        $t = new Template($config, $module.':'.$file);
+                        $t = new Template($config, $module . ':' . $file);
                         ob_start();
 
                         $source = new Source(file_get_contents($basedir . DIRECTORY_SEPARATOR . $file), $file);

@@ -44,4 +44,3 @@ class ReduceSpillOverTest extends ClearStateTestCase
         }
     }
 }
-

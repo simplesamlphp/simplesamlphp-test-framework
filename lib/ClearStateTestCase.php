@@ -56,4 +56,3 @@ class ClearStateTestCase extends TestCase
         self::$stateClearer->clearSSPState();
     }
 }
-

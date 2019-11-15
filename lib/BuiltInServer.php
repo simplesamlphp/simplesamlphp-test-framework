@@ -1,4 +1,9 @@
 <?php
+
+namespace SimpleSAML\TestUtils;
+
+use SimpleSAML\Utils\System;
+
 /**
  * An extremely simple class to start and stop PHP's built-in server, with the possibility to specify the document
  * root and the "router" file to run for every request.
@@ -6,11 +11,6 @@
  * @author Jaime Pérez Crespo <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\TestUtils;
-
-use SimpleSAML\Utils\System;
-
 class BuiltInServer
 {
     /**
@@ -72,8 +72,8 @@ class BuiltInServer
      * Start the built-in server in a random port.
      *
      * This method will wait up to 5 seconds for the server to start. When it returns an address, it is guaranteed that
-     * the server has started and is listening for connections. If it returns the default value on the other hand, there will be no
-     * guarantee that the server started properly.
+     * the server has started and is listening for connections. If it returns the default value on the other hand,
+     * there will be no guarantee that the server started properly.
      *
      * @return string The address where the server is listening for connections, or false if the server failed to start
      * for some reason.
@@ -83,7 +83,7 @@ class BuiltInServer
     public function start()
     {
         $port = mt_rand(1025, 65535);
-        $this->address = 'localhost:'.$port;
+        $this->address = 'localhost:' . $port;
 
         if (System::getOS() === System::WINDOWS) {
             $command = sprintf(
@@ -135,7 +135,7 @@ class BuiltInServer
     {
         if ($this->pid === 0) {
             return;
-        } else if (System::getOS() === System::WINDOWS) {
+        } elseif (System::getOS() === System::WINDOWS) {
             exec('taskkill /PID ' . $this->pid);
         } else {
             exec('kill ' . $this->pid);
@@ -221,4 +221,3 @@ class BuiltInServer
         ];
     }
 }
-

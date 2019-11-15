@@ -1,10 +1,4 @@
 <?php
-/**
- * A test case that provides a certificate directory with public and private
- * keys.
- *
- * @package SimpleSAMLphp
- */
 
 namespace SimpleSAML\TestUtils;
 
@@ -12,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
 
+/**
+ * A test case that provides a certificate directory with public and private
+ * keys.
+ *
+ * @package SimpleSAMLphp
+ */
 class SigningTestCase extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -115,4 +115,3 @@ class SigningTestCase extends TestCase
         $reflectedInstance->setAccessible(false);
     }
 }
-
