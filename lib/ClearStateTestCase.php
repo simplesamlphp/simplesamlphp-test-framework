@@ -21,7 +21,7 @@ class ClearStateTestCase extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        if (!self::$stateClearer) {
+        if (!isset(self::$stateClearer)) {
             self::$stateClearer = new StateClearer();
             self::$stateClearer->backupGlobals();
         }

@@ -33,5 +33,13 @@
                 <file name="tests/bootstrap.php" />
             </errorLevel>
         </UnresolvableInclude>
+
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <file name="lib/ClearStateTestCase.php" />
+                <file name="lib/ReduceSpillOverTest.php" />
+                <file name="lib/TemplateTest.php" />
+            </errorLevel>
+        </InternalMethod>
     </issueHandlers>
 </psalm>

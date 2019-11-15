@@ -69,7 +69,7 @@ class SigningTestCase extends TestCase
     /**
      * @return array
      */
-    public function getCertDirContent()
+    public function getCertDirContent(): array
     {
         return [
             $this->ca_private_key_file => $this->ca_private_key,
@@ -83,7 +83,7 @@ class SigningTestCase extends TestCase
     /**
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->config = Configuration::loadFromArray([
             'certdir' => $this->cert_directory,
@@ -94,7 +94,7 @@ class SigningTestCase extends TestCase
     /**
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clearInstance($this->config, Configuration::class, []);
     }
@@ -102,11 +102,11 @@ class SigningTestCase extends TestCase
 
     /**
      * @param \SimpleSAML\Configuration $service
-     * @param string $className
+     * @param class-string $className
      * @param mixed|null $value
      * @return void
      */
-    protected function clearInstance(Configuration $service, $className, $value = null)
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

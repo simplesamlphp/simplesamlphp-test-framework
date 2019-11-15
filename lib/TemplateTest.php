@@ -15,6 +15,9 @@ use SimpleSAML\Module;
 use Twig\Error\SyntaxError;
 use Twig\Source;
 
+/**
+ * @psalm-suppress InternalMethod
+ */
 class TemplateTest extends TestCase
 {
     /**
