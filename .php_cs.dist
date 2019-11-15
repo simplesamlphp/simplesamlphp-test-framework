@@ -1,7 +1,6 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude(__DIR__ . '/www/resources')
     ->in([
         __DIR__ . '/lib',
         __DIR__ . '/metadata/simplesamlphp',
