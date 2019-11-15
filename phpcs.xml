@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="SimpleSAMLphp ruleset">
+    <config name="ignore_warnings_on_exit" value="1"/>
+
+    <file>lib</file>
+    <file>metadata/simplesamlphp</file>
+    <file>stubs</file>
+    <file>tests</file>
+</ruleset>
+
+
