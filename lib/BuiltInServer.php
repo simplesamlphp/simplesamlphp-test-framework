@@ -59,7 +59,7 @@ class BuiltInServer
         if (!is_null($docroot)) {
             $this->docroot = $docroot;
         } else {
-            $this->docroot = dirname(dirname(__FILE__)).'/www/';
+            $this->docroot = dirname(dirname(__FILE__)) . '/www/';
         }
 
         // Rationalize docroot
@@ -136,9 +136,9 @@ class BuiltInServer
         if ($this->pid === 0) {
             return;
         } else if (System::getOS() === System::WINDOWS) {
-            exec('taskkill /PID '.$this->pid);
+            exec('taskkill /PID ' . $this->pid);
         } else {
-            exec('kill '.$this->pid);
+            exec('kill ' . $this->pid);
         }
         $this->pid = 0;
     }
@@ -174,9 +174,9 @@ class BuiltInServer
      */
     public function setRouter($router)
     {
-        $file = dirname(dirname(__FILE__)).'/tests/routers/'.$router.'.php';
+        $file = dirname(dirname(__FILE__)) . '/tests/routers/' . $router . '.php';
         if (!file_exists($file)) {
-            throw new \InvalidArgumentException('Unknown router "'.$router.'".');
+            throw new \InvalidArgumentException('Unknown router "' . $router . '".');
         }
         $this->router = $file;
     }
@@ -194,8 +194,8 @@ class BuiltInServer
     public function get($query, $parameters, $curlopts = [])
     {
         $ch = curl_init();
-        $url = 'http://'.$this->address.$query;
-        $url .= (!empty($parameters)) ? '?'.http_build_query($parameters) : '';
+        $url = 'http://' . $this->address . $query;
+        $url .= (!empty($parameters)) ? '?' . http_build_query($parameters) : '';
         curl_setopt_array($ch, [
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => 1,
