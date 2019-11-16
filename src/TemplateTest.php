@@ -38,7 +38,6 @@ class TemplateTest extends TestCase
             foreach ($files as $file) {
                 if (preg_match('/.twig$/', $file)) {
                     $t = new Template($config, $file);
-                    ob_start();
 
                     $source = new Source(file_get_contents($basedir . DIRECTORY_SEPARATOR . $file), $file);
                     $t->getTwig()->tokenize($source);
@@ -48,8 +47,6 @@ class TemplateTest extends TestCase
                     } catch (SyntaxError $e) {
                         $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
                     }
-
-                    ob_end_clean();
                 }
             }
         }
@@ -62,7 +59,6 @@ class TemplateTest extends TestCase
                 foreach ($files as $file) {
                     if (preg_match('/.twig$/', $file)) {
                         $t = new Template($config, $module . ':' . $file);
-                        ob_start();
 
                         $source = new Source(file_get_contents($basedir . DIRECTORY_SEPARATOR . $file), $file);
                         $t->getTwig()->tokenize($source);
@@ -72,8 +68,6 @@ class TemplateTest extends TestCase
                         } catch (SyntaxError $e) {
                             $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
                         }
-
-                        ob_end_clean();
                     }
                 }
             }
