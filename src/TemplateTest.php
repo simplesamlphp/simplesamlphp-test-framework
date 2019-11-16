@@ -30,7 +30,7 @@ class TemplateTest extends TestCase
         ]);
         Configuration::setPreLoadedConfig($config);
 
-        $basedir = $config->getBaseDir() . DIRECTORY_SEPARATOR . 'templates';
+        $basedir = $config->getBaseDir() . 'templates';
         if (file_exists($basedir)) {
             $files = array_diff(scandir($basedir), ['.', '..']);
 
@@ -51,22 +51,27 @@ class TemplateTest extends TestCase
             }
         }
 
-        // Module templates
-        foreach (Module::getModules() as $module) {
-            $basedir = Module::getModuleDir($module) . DIRECTORY_SEPARATOR . 'templates';
-            if (file_exists($basedir)) {
-                $files = array_diff(scandir($basedir), ['.', '..']);
-                foreach ($files as $file) {
-                    if (preg_match('/.twig$/', $file)) {
-                        $t = new Template($config, $module . ':' . $file);
+        // See if this is the base repository or a module. If module, skip
+        if (strpos($basedir, 'vendor') === false) {
+            // Module templates
 
-                        $source = new Source(file_get_contents($basedir . DIRECTORY_SEPARATOR . $file), $file);
-                        $t->getTwig()->tokenize($source);
+            foreach (Module::getModules() as $module) {
+                $basedir = Module::getModuleDir($module) . DIRECTORY_SEPARATOR . 'templates';
 
-                        try {
-                            $this->addToAssertionCount(1);
-                        } catch (SyntaxError $e) {
-                            $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+                if (file_exists($basedir)) {
+                    $files = array_diff(scandir($basedir), ['.', '..']);
+                    foreach ($files as $file) {
+                        if (preg_match('/.twig$/', $file)) {
+                            $t = new Template($config, $module . ':' . $file);
+
+                            $source = new Source(file_get_contents($basedir . DIRECTORY_SEPARATOR . $file), $file);
+                            $t->getTwig()->tokenize($source);
+
+                            try {
+                                $this->addToAssertionCount(1);
+                            } catch (SyntaxError $e) {
+                                $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+                            }
                         }
                     }
                 }
