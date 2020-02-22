@@ -10,10 +10,9 @@ stages:
 ################
 
 php:
-  - 7.0
-  - 7.1
   - 7.2
   - 7.3
+  - 7.4
 
 env:
   - COMMAND="composer install"
@@ -50,22 +49,6 @@ jobs:
 
     - stage: pre-conditions
       env: Syntax check PHP
-      php: 7.0
-      before_script:
-        - composer install
-      script:
-        - bin/check-syntax-php.sh
-
-    - stage: pre-conditions
-      env: Syntax check PHP
-      php: 7.1
-      before_script:
-        - composer install
-      script:
-        - bin/check-syntax-php.sh
-
-    - stage: pre-conditions
-      env: Syntax check PHP
       php: 7.2
       before_script:
         - composer install
@@ -75,6 +58,14 @@ jobs:
     - stage: pre-conditions
       env: Syntax check PHP
       php: 7.3
+      before_script:
+        - composer install
+      script:
+        - bin/check-syntax-php.sh
+
+    - stage: pre-conditions
+      env: Syntax check PHP
+      php: 7.4
       before_script:
         - composer install
       script:
