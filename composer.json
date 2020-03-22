@@ -3,7 +3,7 @@
     "description": "Test framework for SimpleSAMLphp and related repositories ",
     "type": "project",
     "keywords": ["test-framework"],
-    "license": "LGPL-3.0-or-later",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {
             "name": "Tim van Dijen",
