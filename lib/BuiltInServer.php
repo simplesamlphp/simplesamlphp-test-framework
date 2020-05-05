@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\TestUtils;
 
 use SimpleSAML\Utils\System;
@@ -50,7 +52,7 @@ class BuiltInServer
      *
      * @see http://php.net/manual/en/features.commandline.webserver.php
      */
-    public function __construct($router = null, $docroot = null)
+    public function __construct(string $router = null, string $docroot = null)
     {
         if (!is_null($router)) {
             $this->setRouter($router);
@@ -80,7 +82,7 @@ class BuiltInServer
      *
      * @todo This method should be resilient to clashes in the randomly-picked port number.
      */
-    public function start()
+    public function start(): string
     {
         $port = mt_rand(1025, 65535);
         $this->address = 'localhost:' . $port;
@@ -131,7 +133,7 @@ class BuiltInServer
      * Stop the built-in server.
      * @return void
      */
-    public function stop()
+    public function stop(): void
     {
         if ($this->pid === 0) {
             return;
@@ -149,7 +151,7 @@ class BuiltInServer
      *
      * @return int The PID of the server, or 0 if the server was not started.
      */
-    public function getPid()
+    public function getPid(): int
     {
         return $this->pid;
     }
@@ -160,7 +162,7 @@ class BuiltInServer
      *
      * @return string The name of the "router" file.
      */
-    public function getRouter()
+    public function getRouter(): string
     {
         return $this->router;
     }
@@ -172,7 +174,7 @@ class BuiltInServer
      * @param string $router The name of a "router" file to use when starting the server.
      * @return void
      */
-    public function setRouter($router)
+    public function setRouter(string $router): void
     {
         $file = dirname(dirname(__FILE__)) . '/tests/routers/' . $router . '.php';
         if (!file_exists($file)) {
@@ -191,7 +193,7 @@ class BuiltInServer
      *
      * @return array The response obtained from the built-in server.
      */
-    public function get($query, $parameters, $curlopts = [])
+    public function get(string $query, array $parameters, array $curlopts = []): array
     {
         $ch = curl_init();
         $url = 'http://' . $this->address . $query;
