@@ -57,7 +57,7 @@ class SigningTestCase extends TestCase
      */
     public function __construct()
     {
-        $this->root_directory = getcwd();
+        $this->root_directory = dirname(dirname(__FILE__));
         $base = $this->root_directory . DIRECTORY_SEPARATOR . $this->cert_directory;
         $this->ca_private_key = file_get_contents($base . DIRECTORY_SEPARATOR . $this->ca_private_key_file);
         $this->ca_certificate = file_get_contents($base . DIRECTORY_SEPARATOR . $this->ca_certificate_file);
