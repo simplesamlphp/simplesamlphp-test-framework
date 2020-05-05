@@ -25,7 +25,6 @@ class TemplateTest extends TestCase
     public function testSyntax()
     {
         $config = Configuration::loadFromArray([
-            'usenewui' => true,
             'module.enable' => array_fill_keys(Module::getModules(), true),
         ]);
         Configuration::setPreLoadedConfig($config);
