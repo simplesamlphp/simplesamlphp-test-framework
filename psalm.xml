@@ -38,7 +38,7 @@
             <errorLevel type="suppress">
                 <file name="lib/ClearStateTestCase.php" />
                 <file name="lib/ReduceSpillOverTest.php" />
-                <file name="lib/TemplateTest.php" />
+                <file name="src/TemplateTest.php" />
             </errorLevel>
         </InternalMethod>
     </issueHandlers>
