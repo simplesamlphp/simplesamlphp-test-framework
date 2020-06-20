@@ -222,7 +222,7 @@ rQ2PBSVdxnqMmUo=
      * Returns malformed public key.
      * @return string
      */
-    public static function getInvalidPublicKey(): string
+    public static function getPlainInvalidPublicKey(): string
     {
         return self::INVALID_PUBLIC_KEY_PEM;
     }
@@ -232,7 +232,7 @@ rQ2PBSVdxnqMmUo=
      * Returns malformed private key.
      * @return string
      */
-    public static function getInvalidPrivateKey(): string
+    public static function getPlainInvalidPrivateKey(): string
     {
         return self::INVALID_PRIVATE_KEY_PEM;
     }
