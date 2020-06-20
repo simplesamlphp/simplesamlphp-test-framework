@@ -179,7 +179,7 @@ rQ2PBSVdxnqMmUo=
     public static function getPublicKey2Sha256(): XMLSecurityKey
     {
         $publicKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
-        $publicKey->loadKey(self::PUBLIC_KEY_PEM_2);
+        $publicKey->loadKey(self::PUBLIC_KEY_2_PEM);
         return $publicKey;
     }
 
