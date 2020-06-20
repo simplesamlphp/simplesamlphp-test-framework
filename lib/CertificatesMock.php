@@ -11,6 +11,8 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
  */
 class CertificatesMock
 {
+    public const CERTIFICATE_PATTERN = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
+
     /** Contents of ./certificates/pem/signed.example.org.crt */
     public const PUBLIC_KEY_PEM = '-----BEGIN CERTIFICATE-----
 MIICqDCCAhECAQIwDQYJKoZIhvcNAQELBQAwgZgxCzAJBgNVBAYTAlVTMQ8wDQYD
@@ -126,6 +128,7 @@ rQ2PBSVdxnqMmUo=
         return $privateKey;
     }
 
+
     /**
      * @return \RobRichards\XMLSecLibs\XMLSecurityKey
      */
@@ -158,6 +161,7 @@ rQ2PBSVdxnqMmUo=
         return $publicKey;
     }
 
+
     /**
      * @return \RobRichards\XMLSecLibs\XMLSecurityKey
      */
@@ -178,6 +182,39 @@ rQ2PBSVdxnqMmUo=
         $publicKey->loadKey(self::PUBLIC_KEY_PEM_2);
         return $publicKey;
     }
+
+
+    /**
+     * @return string
+     */
+    public static function getPlainPublicKey(): string
+    {
+        return self::PUBLIC_KEY_PEM;
+    }
+
+
+    /**
+     * @return string
+     */
+    public static function getPlainPrivateKey(): string
+    {
+        return self::PRIVATE_KEY_PEM;
+    }
+
+
+    /**
+     * Returns just the certificate contents without the begin and end markings
+     * @return string
+     */
+    public static function getPlainPublicKeyContents(): string
+    {
+        if (!preg_match(self::CERTIFICATE_PATTERN, self::PUBLIC_KEY_PEM, $matches)) {
+            throw new Exception('Could not find PEM encoded certificate.');
+        }
+
+        return preg_replace('/\s+/', '', $matches[1]);
+    }
+
 
     /**
      * Returns malformed public key.
