@@ -1,0 +1,70 @@
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 3 (0x3)
+        Signature Algorithm: dsa_with_SHA256
+        Issuer: emailAddress=noreply@simplesamlphp.org, CN=SimpleSAMLphp Testing CA, O=SimpleSAMLphp HQ, L=Honolulu, ST=Hawaii, C=US
+        Validity
+            Not Before: Jun 21 22:18:03 2020 GMT
+            Not After : May 28 22:18:03 2120 GMT
+        Subject: 
+        Subject Public Key Info:
+            Public Key Algorithm: dsaEncryption
+                pub: 
+                    2a:f8:c2:98:a3:91:f2:6a:17:4d:0e:37:4d:01:70:
+                    0f:57:b4:0e:a4:50:6b:be:fb:2e:03:0f:79:a9:5c:
+                    7f:28:11:14:fa:0e:8d:92:89:cb:13:33:22:dd:0f:
+                    3c:a1:d7:28:fb:1a:70:23:25:31:97:69:9f:6e:24:
+                    dd:a6:d8:ac:1b:65:1d:a2:91:61:59:42:8f:c9:fc:
+                    33:74:85:c6:68:3d:03:ed:16:01:50:3e:bd:92:a4:
+                    ca:76:0f:a9:b9:72:b3:f3:4d:21:d3:f4:80:0e:87:
+                    c6:27:e8:46:d1:0b:e6:85:f9:7d:c7:4c:49:a2:09:
+                    55:fb:8d:2e:76:cb:22:9e
+                P:   
+                    00:97:fe:ac:b8:40:8c:f8:d5:2e:f2:91:1f:d9:a5:
+                    e9:ef:fb:db:7c:8c:ad:f7:f3:ff:a2:ff:53:64:e7:
+                    cc:c8:89:0c:69:24:d6:4e:ca:43:d4:a9:61:3f:d5:
+                    42:f3:6e:68:8c:e8:fb:92:37:cd:d7:d5:08:b1:b1:
+                    17:b0:10:c4:af:f7:22:de:4d:24:90:2d:5e:fe:29:
+                    d9:4e:d8:5a:98:35:d0:a3:5a:c4:16:6b:be:18:72:
+                    70:83:c4:09:3a:ba:d6:1c:28:71:26:ab:2e:99:6e:
+                    ce:18:07:55:4f:69:8d:18:cc:e6:9c:05:06:0a:f3:
+                    f7:81:31:8c:e6:27:68:49:e1
+                Q:   
+                    00:dc:78:98:85:85:2e:21:a6:88:d5:5a:75:26:2c:
+                    e8:1c:0a:17:f8:6f
+                G:   
+                    25:bc:ee:a3:5e:70:72:46:1a:4f:d4:9e:92:ff:42:
+                    12:4a:9d:e1:29:41:2b:cf:3b:11:00:e0:39:86:a7:
+                    98:5e:87:c9:97:e7:12:c2:06:05:93:31:ad:a3:6f:
+                    99:49:c9:31:ce:c9:0f:de:a1:ca:e9:9e:df:5b:9a:
+                    66:a5:35:49:e5:f0:dc:a5:4e:fd:f5:2c:e7:99:05:
+                    53:53:13:c5:7b:40:ee:19:a9:65:47:ac:e8:80:93:
+                    04:17:56:9d:68:38:85:34:fb:f6:06:ed:97:1a:15:
+                    31:5c:ad:37:cb:1e:02:58:30:3a:13:45:47:06:f0:
+                    4a:9f:35:a4:7f:7b:41:43
+    Signature Algorithm: dsa_with_SHA256
+         r:   
+             58:95:9e:2e:b4:b9:19:d5:ce:e5:4d:44:29:51:11:
+             54:12:a6:6e:6c
+         s:   
+             00:a8:64:4b:13:0e:64:c3:45:67:0e:31:28:ae:47:
+             68:fd:5b:3b:0a:b1
+-----BEGIN CERTIFICATE-----
+MIICzTCCAooCAQMwCwYJYIZIAWUDBAMCMIGZMSgwJgYJKoZIhvcNAQkBFhlub3Jl
+cGx5QHNpbXBsZXNhbWxwaHAub3JnMSEwHwYDVQQDDBhTaW1wbGVTQU1McGhwIFRl
+c3RpbmcgQ0ExGTAXBgNVBAoMEFNpbXBsZVNBTUxwaHAgSFExETAPBgNVBAcMCEhv
+bm9sdWx1MQ8wDQYDVQQIDAZIYXdhaWkxCzAJBgNVBAYTAlVTMCAXDTIwMDYyMTIy
+MTgwM1oYDzIxMjAwNTI4MjIxODAzWjAAMIIBtjCCASsGByqGSM44BAEwggEeAoGB
+AJf+rLhAjPjVLvKRH9ml6e/723yMrffz/6L/U2TnzMiJDGkk1k7KQ9SpYT/VQvNu
+aIzo+5I3zdfVCLGxF7AQxK/3It5NJJAtXv4p2U7YWpg10KNaxBZrvhhycIPECTq6
+1hwocSarLpluzhgHVU9pjRjM5pwFBgrz94ExjOYnaEnhAhUA3HiYhYUuIaaI1Vp1
+JizoHAoX+G8CgYAlvO6jXnByRhpP1J6S/0ISSp3hKUErzzsRAOA5hqeYXofJl+cS
+wgYFkzGto2+ZSckxzskP3qHK6Z7fW5pmpTVJ5fDcpU799SznmQVTUxPFe0DuGall
+R6zogJMEF1adaDiFNPv2Bu2XGhUxXK03yx4CWDA6E0VHBvBKnzWkf3tBQwOBhAAC
+gYAq+MKYo5HyahdNDjdNAXAPV7QOpFBrvvsuAw95qVx/KBEU+g6NkonLEzMi3Q88
+odco+xpwIyUxl2mfbiTdptisG2UdopFhWUKPyfwzdIXGaD0D7RYBUD69kqTKdg+p
+uXKz800h0/SADofGJ+hG0Qvmhfl9x0xJoglV+40udssinjALBglghkgBZQMEAwID
+MAAwLQIUWJWeLrS5GdXO5U1EKVERVBKmbmwCFQCoZEsTDmTDRWcOMSiuR2j9WzsK
+sQ==
+-----END CERTIFICATE-----

@@ -21,19 +21,19 @@ class SigningTestCase extends TestCase
     protected $root_directory;
 
     /** @var string $cert_directory */
-    protected $cert_directory = 'certificates/pem';
+    protected $cert_directory = 'certificates/rsa-pem';
 
     /** @var string $ca_private_key_file */
-    protected $ca_private_key_file = 'example.org-ca_nopasswd.key';
+    protected $ca_private_key_file = 'simplesamlphp.org-ca_nopasswd.key';
 
     /** @var string $ca_certificate_file */
-    protected $ca_certificate_file = 'example.org-ca.crt';
+    protected $ca_certificate_file = 'simplesamlphp.org-ca.crt';
 
     /** @var string $good_private_key_file */
-    protected $good_private_key_file = 'signed.example.org_nopasswd.key';
+    protected $good_private_key_file = 'signed.simplesamlphp.org_nopasswd.key';
 
     /** @var string $good_certificate_file */
-    protected $good_certificate_file = 'signed.example.org.crt';
+    protected $good_certificate_file = 'signed.simplesamlphp.org.crt';
 
     // openssl genrsa -out example.org-ca.key 1024
     /** @var string $ca_private_key */

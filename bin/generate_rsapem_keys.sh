@@ -14,7 +14,6 @@ if [[ $1 == '-d' || $1 == '--destination' ]]; then
 fi
 
 PEM_RSA_DIR="${DESTINATION}/certificates/rsa-pem"
-PEM_DSA_DIR="${DESTINATION}/certificates/dsa-pem"
 
 declare -a CERTS=(
   "signed"
@@ -30,7 +29,6 @@ mkdir $DESTINATION/certificates
 touch $DESTINATION/index.txt
 echo 01 > $DESTINATION/serial.txt
 mkdir $PEM_RSA_DIR
-mkdir $PEM_DSA_DIR
 
 ## Create CA ##
 
@@ -57,7 +55,7 @@ do
     -out $PEM_RSA_DIR/$CERT.simplesamlphp.org.key -passout pass:$PASSWORD
 
   openssl req -new -key $PEM_RSA_DIR/$CERT.simplesamlphp.org_nopasswd.key \
-    -out $PEM_RSA_DIR/$CERT.simplesamlphp.org.csr -subj "${SUBJ}" -verbose
+    -out $PEM_RSA_DIR/$CERT.simplesamlphp.org.csr -subj "${SUBJ}"
 
   if [[ "$CERT" == "expired" ]]; then
     openssl x509 -req -in $PEM_RSA_DIR/$CERT.simplesamlphp.org.csr -CA $PEM_RSA_DIR/simplesamlphp.org-ca.crt \
@@ -99,5 +97,7 @@ sed 's/ //g' $PEM_RSA_DIR/broken.simplesamlphp.org_nopasswd.key > $PEM_RSA_DIR/b
 sed 's/ //g' $PEM_RSA_DIR/broken.simplesamlphp.org.crt >> $PEM_RSA_DIR/broken.simplesamlphp.org.crt
 rm $PEM_RSA_DIR/broken.simplesamlphp.org_nopasswd.key
 
-## Clean-up csr files
+## Clean-up csr- and ca-files
 rm -f $PEM_RSA_DIR/*.csr
+rm -f $DESTINATION/index.txt
+rm -f $DESTINATION/serials.txt
