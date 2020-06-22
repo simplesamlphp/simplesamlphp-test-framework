@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\TestUtils\Certificates;
+namespace SimpleSAML\TestUtils;
 
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
