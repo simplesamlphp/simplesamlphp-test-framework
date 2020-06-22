@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\TestUtils\Certificates;
+namespace SimpleSAML\TestUtils;
 
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -62,9 +62,9 @@ class PEMCertificatesMock
     public static function loadPlainCertificateFile(string $file, $sig_alg = self::ALG_SIG_RSA)
     {
         if ($sig_alg === self::ALG_SIG_RSA) {
-            return file_get_contents(dirname(dirname(dirname(__FILE__))) . self::CERTIFICATE_DIR_RSA . $file);
+            return file_get_contents(dirname(dirname(__FILE__)) . self::CERTIFICATE_DIR_RSA . DIRECTORY_SEPARATOR . $file);
         } else {
-            return file_get_contents(dirname(dirname(dirname(__FILE__))) . self::CERTIFICATE_DIR_DSA . $file);
+            return file_get_contents(dirname(dirname(__FILE__)) . self::CERTIFICATE_DIR_DSA . DIRECTORY_SEPARATOR . $file);
         }
     }
 
