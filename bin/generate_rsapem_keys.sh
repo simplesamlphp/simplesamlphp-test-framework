@@ -78,7 +78,7 @@ openssl rsa -aes256 -in $PEM_RSA_DIR/selfsigned.simplesamlphp.org_nopasswd.key \
   -out $PEM_RSA_DIR/selfsigned.simplesamlphp.org.key -passout pass:$PASSWORD
 
 openssl req -x509 -new -nodes -key $PEM_RSA_DIR/selfsigned.simplesamlphp.org_nopasswd.key \
-  -sha256 -days $VALID_UNTIL -out $PEM_RSA_DIR/selfsigned,simplesamlphp.org.crt \
+  -sha256 -days $VALID_UNTIL -out $PEM_RSA_DIR/selfsigned.simplesamlphp.org.crt \
   -subj "${SUBJ}"
 
 ## Corrupt certicate ##
