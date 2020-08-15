@@ -8,7 +8,7 @@ use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 /**
- * Class \SimpleSAML\TestUtils\CertificatesMock
+ * Class \SimpleSAML\TestUtils\PEMCertificatesMock
  */
 class PEMCertificatesMock
 {
