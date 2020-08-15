@@ -110,7 +110,7 @@ openssl dsa -aes256 -in $PEM_DSA_DIR/selfsigned.simplesamlphp.org_nopasswd.key \
 # This sed-command will swap the first & last character
 sed 's/^\(.\)\(.\+\)\(.\)$/\3\2\1/' $PEM_DSA_DIR/corrupted.simplesamlphp.org_nopasswd.key \
   > $PEM_DSA_DIR/corrupted.simplesamlphp.org.key
-cp $PEM_DSA_DIR/corrupted.simplesamlphp.org.crt $PEM_DSA_DIR/corrupted.simplesamlphp.org.tmp
+mv $PEM_DSA_DIR/corrupted.simplesamlphp.org.crt $PEM_DSA_DIR/corrupted.simplesamlphp.org.tmp
 sed 's/^\(.\)\(.\+\)\(.\)$/\3\2\1/' $PEM_DSA_DIR/corrupted.simplesamlphp.org.tmp \
   > $PEM_DSA_DIR/corrupted.simplesamlphp.org.crt
 rm $PEM_DSA_DIR/corrupted.simplesamlphp.org_nopasswd.key
@@ -119,7 +119,7 @@ rm $PEM_DSA_DIR/corrupted.simplesamlphp.org_nopasswd.key
 
 # This sed-command will swap the first & last character
 sed 's/ //g' $PEM_DSA_DIR/broken.simplesamlphp.org_nopasswd.key > $PEM_DSA_DIR/broken.simplesamlphp.org.key
-cp $PEM_DSA_DIR/broken.simplesamlphp.org.crt $PEM_DSA_DIR/broken.simplesamlphp.org.tmp
+mv $PEM_DSA_DIR/broken.simplesamlphp.org.crt $PEM_DSA_DIR/broken.simplesamlphp.org.tmp
 sed 's/ //g' $PEM_DSA_DIR/broken.simplesamlphp.org.tmp > $PEM_DSA_DIR/broken.simplesamlphp.org.crt
 rm $PEM_DSA_DIR/broken.simplesamlphp.org_nopasswd.key
 
