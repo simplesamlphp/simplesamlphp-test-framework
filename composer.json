@@ -22,7 +22,7 @@
         "bin/check-syntax-yaml.sh"
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
 
         "phpunit/phpunit": "^8.5|^9.0",
         "vimeo/psalm": "^3.14",
