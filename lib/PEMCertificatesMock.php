@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\TestUtils;
 
 use Exception;
-use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\XMLSecurity\XMLSecurityKey;
 
 /**
  * Class \SimpleSAML\TestUtils\PEMCertificatesMock
@@ -73,7 +73,7 @@ class PEMCertificatesMock
      * @param string $hash_alg
      * @param string The file to use
      * @param string $sig_alg  One of rsa|dsa
-     * @return \RobRichards\XMLSecLibs\XMLSecurityKey
+     * @return \SimpleSAML\XMLSecurity\XMLSecurityKey
      */
     public static function getPublicKey(
         string $hash_alg,
@@ -90,7 +90,7 @@ class PEMCertificatesMock
      * @param string $hash_alg
      * @param string The file to use
      * @param string $sig_alg  One of rsa|dsa
-     * @return \RobRichards\XMLSecLibs\XMLSecurityKey
+     * @return \SimpleSAML\XMLSecurity\XMLSecurityKey
      */
     public static function getPrivateKey(
         string $hash_alg,

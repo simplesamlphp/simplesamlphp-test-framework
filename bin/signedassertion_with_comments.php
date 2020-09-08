@@ -3,10 +3,10 @@
 
 require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
 
-use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\DOMDocumentFactory;
-use SAML2\XML\saml\Assertion;
+use SimpleSAML\SAML2\XML\saml\Assertion;
 use SimpleSAML\TestUtils\PEMCertificatesMock;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XMLSecurityKey;
 
 $document = DOMDocumentFactory::fromString(<<<XML
 <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" ID="_d908a49b8b63665738430d1c5b655f297b91331864" Version="2.0" IssueInstant="2016-03-11T14:53:15Z">
