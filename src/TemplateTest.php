@@ -26,6 +26,7 @@ class TemplateTest extends TestCase
     {
         $config = Configuration::loadFromArray([
             'module.enable' => array_fill_keys(Module::getModules(), true),
+            'usenewui' => true,
         ]);
         Configuration::setPreLoadedConfig($config);
 
