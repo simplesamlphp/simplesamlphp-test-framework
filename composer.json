@@ -33,7 +33,7 @@
     "require-dev": {
         "ext-curl": "*",
 
-        "simplesamlphp/simplesamlphp": "dev-simplesamlphp-1.19"
+        "simplesamlphp/simplesamlphp": "^1.19"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
