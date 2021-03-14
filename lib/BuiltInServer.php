@@ -4,7 +4,7 @@
 
 namespace SimpleSAML\TestUtils;
 
-use SimpleSAML\Utils\System;
+use SimpleSAML\Utils;
 
 /**
  * An extremely simple class to start and stop PHP's built-in server, with the possibility to specify the document
@@ -86,8 +86,9 @@ class BuiltInServer
     {
         $port = mt_rand(1025, 65535);
         $this->address = 'localhost:' . $port;
+        $sysUtils = new Utils\System();
 
-        if (System::getOS() === System::WINDOWS) {
+        if ($sysUtils->getOS() === $sysUtils::WINDOWS) {
             $command = sprintf(
                 'powershell $proc = start-process php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') -Passthru; Write-output $proc.Id;',
                 $this->address,
@@ -135,9 +136,10 @@ class BuiltInServer
      */
     public function stop(): void
     {
+        $sysUtils = new Utils\System();
         if ($this->pid === 0) {
             return;
-        } elseif (System::getOS() === System::WINDOWS) {
+        } elseif ($sysUtils->getOS() === $sysUtils::WINDOWS) {
             exec('taskkill /PID ' . $this->pid);
         } else {
             exec('kill ' . $this->pid);
