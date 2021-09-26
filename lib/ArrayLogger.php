@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\Utils;
+namespace SimpleSAML\TestUtils;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggingHandlerInterface;
