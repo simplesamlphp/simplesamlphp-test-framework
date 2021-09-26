@@ -5,7 +5,7 @@ namespace SimpleSAML\TestUtils;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
-use SimpleSAML\Store;
+use SimpleSAML\Store\StoreFactory;
 
 /**
  * A helper class to aid in clearing global state that is set during SSP tests
@@ -22,7 +22,7 @@ class StateClearer
      * Class that implement \SimpleSAML\Utils\ClearableState and should have clearInternalState called between tests
      * @var array
      */
-    private $clearableState = [Configuration::class, MetaDataStorageHandler::class, Store::class, Session::class];
+    private $clearableState = [Configuration::class, MetaDataStorageHandler::class, StoreFactory::class, Session::class];
 
     /**
      * Environmental variables to unset
