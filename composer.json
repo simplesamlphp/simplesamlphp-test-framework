@@ -19,20 +19,18 @@
         "bin/check-syntax-json.sh",
         "bin/check-syntax-php.sh",
         "bin/check-syntax-xml.sh",
-        "bin/check-syntax-yaml.sh"
+        "bin/check-syntax-yaml.sh",
+
+        "tools/composer",
+        "tools/phpcs",
+        "tools/phpunit",
+        "tools/psalm"
     ],
     "require": {
-        "php": "^8.0",
-
-        "phpunit/phpunit": "^9.5",
-        "squizlabs/php_codesniffer": "^3.7",
-        "symfony/phpunit-bridge": "^6.1",
-        "vimeo/psalm": "^4.27 || ^5.0.0-beta1"
+        "php": "^8.0"
     },
     "require-dev": {
-        "ext-curl": "*",
-
-        "simplesamlphp/simplesamlphp": "^2.0.0-rc1"
+        "simplesamlphp/simplesamlphp": "^2.0.0-rc2"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",

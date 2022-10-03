@@ -2,7 +2,6 @@
 .php_cs.cache
 composer.lock
 cs_fixer_tmp*
-tools/*
 vendor/*
 build/*
 .phpunit.result.cache
