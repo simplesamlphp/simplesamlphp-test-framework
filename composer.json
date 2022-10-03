@@ -27,10 +27,8 @@
         "tools/psalm"
     ],
     "require": {
-        "php": "^8.0"
-    },
-    "require-dev": {
-        "simplesamlphp/simplesamlphp": "^2.0.0-rc2"
+        "php": "^8.0",
+        "composer-runtime-api": "^2.2"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
