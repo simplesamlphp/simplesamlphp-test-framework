@@ -61,7 +61,7 @@ class BuiltInServer
         if (!is_null($docroot)) {
             $this->docroot = $docroot;
         } else {
-            $this->docroot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/www/';
+            $this->docroot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/public/';
         }
 
         // Rationalize docroot
