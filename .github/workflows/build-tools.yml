@@ -1,0 +1,186 @@
+---
+
+name: Build tools
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  linter:
+    name: Linter
+    runs-on: ['ubuntu-latest']
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          LINTER_RULES_PATH: 'tools/linters'
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JSON: true
+          VALIDATE_PHP_BUILTIN: true
+          VALIDATE_YAML: true
+          VALIDATE_GITHUB_ACTIONS: true
+
+  build:
+    name: Build tools
+    needs: [linter]
+    strategy:
+      matrix:
+        php-version:
+          - "8.2"
+
+    steps:
+      - name: "Set default PHP version"
+        run: "sudo update-alternatives --set php /usr/bin/php${{ matrix.php-version }}"
+
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+        with:
+          token: ${{ secrets.TOOLS_COMMIT_TOKEN }}
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: "Cache tools installed with PHIVE"
+        uses: "actions/cache@v3"
+        with:
+          path: "${{ runner.temp }}/.phive"
+          key: "php-${{ matrix.php-version }}-phive-${{ hashFiles('.phive/phars.xml') }}"
+          restore-keys: "php-${{ matrix.php-version }}-phive-"
+
+      - name: "Install PHIVE"
+        uses: "szepeviktor/phive@v1"
+        with:
+          home: "${{ runner.temp }}/.phive"
+          binPath: "${{ github.workspace }}/tools/phive"
+
+      - name: "Install PHP tools with PHIVE"
+        uses: "szepeviktor/phive-install@v1"
+        with:
+          home: "${{ runner.temp }}/.phive"
+          binPath: "${{ github.workspace }}/tools/phive"
+          trustGpgKeys: "12CE0F1D262429A5,31C7E470E2138192,4AA394086372C20A"
+
+      - name: Diff the changes after building
+        shell: pwsh
+        # Give an id to the step, so we can reference it later
+        id: changes
+        run: |
+          git add --all
+          $Diff = git diff --cached --name-only
+          # Check if a file under tools/ has changed (added, modified, deleted)
+          $SourceDiff = $Diff | Where-Object {
+              $_ -match '^tools/'
+          }
+          echo "Changed files"
+          echo $SourceDiff
+          $HasDiff = $SourceDiff.Length -gt 0
+          echo "($($SourceDiff.Length) changes)"
+          echo "files_changed=$HasDiff" >> $env:GITHUB_OUTPUT
+
+      - name: Zip artifact for deployment
+        if: steps.changes.outputs.files_changed == 'true'
+        run: zip build.zip -r .
+
+      - uses: actions/upload-artifact@v3
+        if: steps.changes.outputs.files_changed == 'true'
+        with:
+          name: build
+          path: build.zip
+          retention-days: 1
+
+  version:
+    name: Determine next version
+    runs-on: ['ubuntu-latest']
+    needs: build
+    if: needs.build.outputs.files_changed == 'true'
+
+    outputs:
+      version: ${{ steps.tools_version.outputs.version }}
+
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+
+      - name: unzip artifact for deployment
+        run: |
+          unzip build.zip
+          rm build.zip
+
+      - uses: paulhatch/semantic-version@v5.0.3
+        id: tools_version
+        with:
+          # The prefix to use to identify tags
+          tag_prefix: "v"
+
+          # A string which, if present in a git commit, indicates that a change represents a
+          # major (breaking) change, supports regular expressions wrapped with '/'
+          major_pattern: "(MAJOR)"
+
+          # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
+          minor_pattern: "(MINOR)"
+
+          # A string to determine the format of the version output
+          version_format: "${major}.${minor}.${patch}"
+
+          # Optional path to check for changes. If any changes are detected in the path the
+          # 'changed' output will true. Enter multiple paths separated by spaces.
+          change_path: "tools/**"
+
+          # If this is set to true, *every* commit will be treated as a new version.
+          bump_each_commit: true
+
+  commit:
+    name: Commit changes
+    needs: version
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+
+      - name: unzip artifact for deployment
+        run: |
+          unzip build.zip
+          rm build.zip
+
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.1.1
+        with:
+          # The arguments for the `git add` command (see the paragraph below for more info)
+          # Default: '.'
+          add: "['tools/*']"
+
+          # Determines the way the action fills missing author name and email. Three options are available:
+          # - github_actor -> UserName <UserName@users.noreply.github.com>
+          # - user_info -> Your Display Name <your-actual@email.com>
+          # - github_actions -> github-actions <email associated with the github logo>
+          # Default: github_actor
+          default_author: github_actions
+
+          # The message for the commit.
+          # Default: 'Commit from GitHub Actions (name of the workflow)'
+          message: "[skip ci] Auto-update tools"
+
+          # The way the action should handle pathspec errors from the add and remove commands.
+          # Three options are available:
+          # - ignore -> errors will be logged but the step won't fail
+          # - exitImmediately -> the action will stop right away, and the step will fail
+          # - exitAtEnd -> the action will go on, every pathspec error will be logged at the end, the step will fail.
+          # Default: ignore
+          pathspec_error_handling: exitImmediately
+
+          # Arguments for the git tag command (the tag name always needs to be the first word not preceded by an hyphen)
+          # Default: ''
+          tag: "v${{ needs.version.outputs.version }}"
