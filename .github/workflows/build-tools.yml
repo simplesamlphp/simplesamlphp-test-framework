@@ -58,8 +58,8 @@ jobs:
         uses: "actions/cache@v3"
         with:
           path: "${{ runner.temp }}/.phive"
-          key: "php-${{ matrix.php-version }}-phive-${{ hashFiles('.phive/phars.xml') }}"
-          restore-keys: "php-${{ matrix.php-version }}-phive-"
+          key: "php-phive-${{ hashFiles('.phive/phars.xml') }}"
+          restore-keys: "php-phive-"
 
       - name: "Install PHIVE"
         uses: "szepeviktor/phive@v1"
