@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.0",
 
+        "phpunit/phpunit": "^9.6 || ^10.0",
         "symfony/phpunit-bridge": "^6.1"
     },
     "require-dev": {
