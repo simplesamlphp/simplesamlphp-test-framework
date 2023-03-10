@@ -40,6 +40,9 @@ jobs:
         php-version:
           - "8.2"
 
+    outputs:
+      files_changed: ${{ steps.changes.outputs.files_changed }}
+
     steps:
       - name: "Set default PHP version"
         run: "sudo update-alternatives --set php /usr/bin/php${{ matrix.php-version }}"
