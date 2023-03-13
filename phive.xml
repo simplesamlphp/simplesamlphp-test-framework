@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<phive xmlns="https://phar.io/phive">
-  <phar name="phpcs" version="^3.7.2" installed="3.7.2" location="./tools/phpcs" copy="true"/>
-  <phar name="psalm" version="^5.8.0" installed="5.8.0" location="./tools/psalm" copy="true"/>
-</phive>
