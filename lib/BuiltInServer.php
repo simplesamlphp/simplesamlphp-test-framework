@@ -90,7 +90,8 @@ class BuiltInServer
 
         if ($sysUtils->getOS() === $sysUtils::WINDOWS) {
             $command = sprintf(
-                'powershell $proc = start-process php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') -Passthru; Write-output $proc.Id;',
+                'powershell $proc = start-process '
+                  . ' php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') -Passthru; Write-output $proc.Id;',
                 $this->address,
                 $this->docroot,
                 $this->router

@@ -9,6 +9,11 @@
     <file>lib</file>
     <file>metadata/simplesamlphp</file>
     <file>src</file>
+
+    <!-- Lines can be a little bit longer before they break the build -->
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>metadata/simplesamlphp/**</exclude-pattern>
+    </rule>
 </ruleset>
 
 

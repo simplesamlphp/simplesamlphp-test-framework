@@ -27,12 +27,6 @@
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
 
-        <UnresolvableInclude>
-            <errorLevel type="suppress">
-                <file name="tests/bootstrap.php" />
-            </errorLevel>
-        </UnresolvableInclude>
-
         <InternalMethod>
             <errorLevel type="suppress">
                 <file name="lib/ClearStateTestCase.php" />
