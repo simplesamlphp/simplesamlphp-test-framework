@@ -26,5 +26,11 @@
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
         "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "simplesamlphp/composer-module-installer": true
+        }
     }
 }
