@@ -1,6 +1,6 @@
 <?php
 
-//declare(strict_types=1);
+declare(strict_types=1);
 
 namespace SimpleSAML\TestUtils;
 
@@ -61,7 +61,7 @@ class BuiltInServer
         if (!is_null($docroot)) {
             $this->docroot = $docroot;
         } else {
-            $this->docroot = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/public/';
+            $this->docroot = dirname(__FILE__, 5) . '/public/';
         }
 
         // Rationalize docroot
