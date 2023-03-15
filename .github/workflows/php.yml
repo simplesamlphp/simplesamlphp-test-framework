@@ -87,13 +87,6 @@ jobs:
           --shepherd \
           --php-version=${{ steps.setup-php.outputs.php-version }}
 
-      - name: Psalm (testsuite)
-        run: |
-          psalm -c psalm-dev.xml \
-          --show-info=true \
-          --shepherd \
-          --php-version=${{ steps.setup-php.outputs.php-version }}
-
       - name: Psalter
         run: |
           psalm --alter \

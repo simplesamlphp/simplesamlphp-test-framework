@@ -8,6 +8,7 @@
 
     <file>lib</file>
     <file>metadata/simplesamlphp</file>
+    <file>src</file>
 </ruleset>
 
 
