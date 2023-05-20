@@ -7,6 +7,9 @@ namespace SimpleSAML\TestUtils;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggingHandlerInterface;
 
+/**
+ * @deprecated - superseeded by PSR-3 compliant SimpleTestLogger
+ */
 class ArrayLogger implements LoggingHandlerInterface
 {
     /**
