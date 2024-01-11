@@ -74,7 +74,9 @@ jobs:
       #  run: composer-require-checker check composer.json
 
       - name: Check code for unused dependencies in composer.json
-        run: composer-unused
+        run: |
+          composer-unused \
+          --excludePackage=slevomat/coding-standard
 
       - name: PHP Code Sniffer
         run: phpcs
