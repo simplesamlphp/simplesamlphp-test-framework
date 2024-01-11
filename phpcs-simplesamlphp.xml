@@ -13,4 +13,6 @@
   <!-- Do not allow any unused use-statements to exist -->
   <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
 
+  <!-- Enforce alphabetically sorted use-statements -->
+  <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses" />
 </ruleset>
