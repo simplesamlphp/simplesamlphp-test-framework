@@ -16,12 +16,12 @@
         }
     },
     "require": {
-        "phpunit/phpunit": "^9.6 || ^10.0",
         "slevomat/coding-standard": "^8.14"
     },
     "require-dev": {
         "ext-curl": "*",
 
+        "phpunit/phpunit": "^9.6 || ^10.0",
         "simplesamlphp/simplesamlphp": "^2.0.0"
     },
     "support": {
