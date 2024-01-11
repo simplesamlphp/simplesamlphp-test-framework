@@ -18,12 +18,12 @@ jobs:
     runs-on: ['ubuntu-latest']
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Lint Code Base
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@v5
         env:
           VALIDATE_ALL_CODEBASE: true
           LINTER_RULES_PATH: 'tools/linters'
@@ -44,7 +44,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should be the higest supported version, so we can use the newest tools
-          php-version: '8.2'
+          php-version: '8.3'
           tools: composer, composer-require-checker, composer-unused, phpcs, psalm
           # optional performance gain for psalm: opcache
           extensions: ctype, date, dom, filter, hash, intl, mbstring, opcache, openssl, pcre, spl, xml
@@ -52,7 +52,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
@@ -113,7 +113,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
