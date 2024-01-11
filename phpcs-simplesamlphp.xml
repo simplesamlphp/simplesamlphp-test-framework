@@ -10,6 +10,8 @@
   <!-- Do not allow unnecessary spaces inside arbitrary parentheses -->
   <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
 
+  <config name="installed_paths" value="vendor/slevomat/coding-standard"/>
+
   <!-- Do not allow any unused use-statements to exist -->
   <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
 
