@@ -16,7 +16,8 @@
         }
     },
     "require": {
-        "phpunit/phpunit": "^9.6 || ^10.0"
+        "phpunit/phpunit": "^9.6 || ^10.0",
+        "slevomat/coding-standard": "^8.14"
     },
     "require-dev": {
         "ext-curl": "*",
@@ -30,7 +31,8 @@
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "simplesamlphp/composer-module-installer": true
+            "simplesamlphp/composer-module-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
 }

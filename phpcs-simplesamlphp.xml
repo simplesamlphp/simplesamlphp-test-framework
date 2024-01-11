@@ -10,4 +10,7 @@
   <!-- Do not allow unnecessary spaces inside arbitrary parentheses -->
   <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
 
+  <!-- Do not allow any unused use-statements to exist -->
+  <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
+
 </ruleset>
