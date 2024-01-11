@@ -6,8 +6,8 @@ namespace SimpleSAML\TestUtils;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\XHTML\Template;
 use SimpleSAML\Module;
+use SimpleSAML\XHTML\Template;
 use Twig\Error\SyntaxError;
 use Twig\Source;
 

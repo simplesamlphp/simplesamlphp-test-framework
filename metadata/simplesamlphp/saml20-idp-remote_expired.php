@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $metadata['https://idp.example.org/saml2/idp/metadata.php'] = [
     'metadata-set' => 'saml20-idp-remote',
     'entityid' => 'https://idp.example.org/saml2/idp/metadata.php',
