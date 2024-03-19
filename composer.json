@@ -16,7 +16,7 @@
         }
     },
     "require": {
-        "phpunit/phpunit": "^9.6 || ^10.0 || ^11.0",
+        "phpunit/phpunit": "^10.0 || ^11.0",
         "slevomat/coding-standard": "^8.15",
         "symfony/phpunit-bridge": "^6.4 || ^7.0"
     },
