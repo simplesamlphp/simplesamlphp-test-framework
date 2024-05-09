@@ -15,16 +15,20 @@
             "SimpleSAML\\TestUtils\\": "lib/"
         }
     },
-    "require": {
-        "phpunit/phpunit": "^10.0 || ^11.0",
-        "slevomat/coding-standard": "^8.15",
-        "symfony/phpunit-bridge": "^6.4 || ^7.0"
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleSAML\\Test\\TestUtils\\": "tests/src/"
+        }
     },
-    "require-dev": {
+    "require": {
         "php": "^8.1",
         "ext-curl": "*",
 
-        "simplesamlphp/simplesamlphp": "^2.2.0"
+        "phpunit/phpunit": "^10.0 || ^11.0",
+        "psr/log": "^2.0 || ^3.0",
+        "simplesamlphp/simplesamlphp": "^2.2.0",
+        "slevomat/coding-standard": "^8.15",
+        "symfony/phpunit-bridge": "^6.4 || ^7.0"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
