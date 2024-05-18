@@ -17,4 +17,7 @@
 
   <!-- Enforce alphabetically sorted use-statements -->
   <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses" />
+
+  <!-- Enforce the use of trailing commas -->
+  <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
 </ruleset>
