@@ -20,4 +20,8 @@
 
   <!-- Enforce the use of trailing commas -->
   <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma" />
+  <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall" />
+  <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInClosureUse" />
+  <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration" />
+
 </ruleset>
