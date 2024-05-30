@@ -6,7 +6,7 @@ class KRB5NegotiateAuth
      * @param string $keytab
      * @param string $spn|null
      */
-    public function __construct($keytab, $spn = null)
+    public function __construct($keytab, $spn = null, GSSAPIChannelBinding $binding)
     {
     }
 
@@ -32,6 +32,90 @@ class KRB5NegotiateAuth
      * @return void
      */
     public function getDelegatedCredentials(KRB5CCache $ccache)
+    {
+    }
+
+    /**
+     * @return bool
+     */
+    public function isChannelBound()
+    {
+    }
+}
+
+
+class GSSAPIChannelBinding
+{
+    public function __construct()
+    {
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getInitiatorAddress()
+    {
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getInitiatorAddressType()
+    {
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getAcceptorAddress()
+    {
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getAcceptorAddressType()
+    {
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getApplicationData()
+    {
+    }
+
+
+    /**
+     * @param string $data
+     * @return void
+     */
+    public function getApplicationData($data)
+    {
+    }
+
+
+    /**
+     * @param int $type
+     * @param string $data
+     * @return void
+     */
+    public function setInitiatorAddress($type, $data)
+    {
+    }
+
+
+    /**
+     * @param int $type
+     * @param string $data
+     * @return void
+     */
+    public function setAcceptorAddress($type, $data)
     {
     }
 }
