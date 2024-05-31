@@ -95,7 +95,7 @@ class GSSAPIChannelBinding
      * @param string $data
      * @return void
      */
-    public function getApplicationData($data)
+    public function setApplicationData($data)
     {
     }
 
