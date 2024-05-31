@@ -6,7 +6,7 @@ class KRB5NegotiateAuth
      * @param string $keytab
      * @param string $spn|null
      */
-    public function __construct($keytab, $spn = null, GSSAPIChannelBinding $binding)
+    public function __construct($keytab, $spn = null, GSSAPIChannelBinding $binding = null)
     {
     }
 
