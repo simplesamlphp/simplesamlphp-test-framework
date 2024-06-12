@@ -54,7 +54,7 @@ class InMemoryStore implements ClearableState, StoreInterface
         self::$store[$key] = [
             'type' => $type,
             'value' => $value,
-            'expire' => $expire
+            'expire' => $expire,
         ];
     }
 

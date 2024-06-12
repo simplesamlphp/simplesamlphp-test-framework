@@ -94,14 +94,14 @@ class BuiltInServer
                   . ' php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') -Passthru; Write-output $proc.Id;',
                 $this->address,
                 $this->docroot,
-                $this->router
+                $this->router,
             );
         } else {
             $command = sprintf(
                 'php -S %s -t %s %s >> /dev/null 2>&1 & echo $!',
                 $this->address,
                 $this->docroot,
-                $this->router
+                $this->router,
             );
         }
 
