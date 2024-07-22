@@ -83,7 +83,10 @@ jobs:
         run: |
           composer-unused \
           --excludePackage=slevomat/coding-standard \
-          --excludePackage=symfony/phpunit-bridge
+          --excludePackage=symfony/phpunit-bridge \
+          --excludePackage=phpstan/phpstan \
+          --excludePackage=phpstan/extension-installer \
+          --excludePackage=phpstan/phpstan-mockery
 
       - name: PHP Code Sniffer
         run: phpcs
