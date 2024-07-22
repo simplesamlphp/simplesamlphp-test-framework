@@ -29,9 +29,11 @@
         "phpstan/phpstan-mockery": "^1.1",
         "phpunit/phpunit": "^10.0 || ^11.0",
         "psr/log": "^2.0 || ^3.0",
-        "simplesamlphp/simplesamlphp": "^2",
         "slevomat/coding-standard": "^8.15",
         "symfony/phpunit-bridge": "^6.4 || ^7.0"
+    },
+    "require-dev": {
+        "simplesamlphp/simplesamlphp": "^2"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
@@ -41,7 +43,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "simplesamlphp/composer-module-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
         }
     }
 }
