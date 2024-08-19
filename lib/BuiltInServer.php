@@ -116,7 +116,7 @@ class BuiltInServer
             $sock = @fsockopen('localhost', $port, $errno, $errstr, 10);
             if ($sock === false) {
                 // set a 5 secs timeout waiting for the server to start
-                if (microtime(true) > $start + 5) {
+                if (microtime(true) > $start + 5.0) {
                     $this->pid = 0; // signal failure
                     break;
                 }
@@ -127,6 +127,7 @@ class BuiltInServer
             fclose($sock);
         }
 
+        sleep(2); // Ensure the service is able to prepare itself before receiving requests
         return $this->address;
     }
 
