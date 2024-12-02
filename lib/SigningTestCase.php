@@ -108,7 +108,7 @@ class SigningTestCase extends TestCase
      * @param mixed|null $value
      * @return void
      */
-    protected function clearInstance(Configuration $service, string $className, $value = null): void
+    protected function clearInstance(Configuration $service, string $className, ?$value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

@@ -4,7 +4,31 @@ declare(strict_types=1);
 
 namespace SimpleSAML\TestUtils;
 
+use InvalidArgumentException;
 use SimpleSAML\Utils;
+
+use function array_shift;
+use function curl_close;
+use function curl_init;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_setopt_array;
+use function dirname;
+use function exec;
+use function explode;
+use function fclose;
+use function file_exists;
+use function fsockopen;
+use function http_build_query;
+use function intval;
+use function is_null;
+use function microtime;
+use function mt_rand;
+use function rtrim;
+use function sleep;
+use function sprintf;
+use function str_replace;
+use function trim;
 
 /**
  * An extremely simple class to start and stop PHP's built-in server, with the possibility to specify the document
@@ -52,7 +76,7 @@ class BuiltInServer
      *
      * @see http://php.net/manual/en/features.commandline.webserver.php
      */
-    public function __construct(string $router = null, string $docroot = null)
+    public function __construct(?string $router = null, ?string $docroot = null)
     {
         if (!is_null($router)) {
             $this->setRouter($router);
@@ -182,7 +206,7 @@ class BuiltInServer
     {
         $file = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/tests/routers/' . $router . '.php';
         if (!file_exists($file)) {
-            throw new \InvalidArgumentException('Unknown router "' . $router . '".');
+            throw new InvalidArgumentException('Unknown router "' . $router . '".');
         }
         $this->router = $file;
     }
@@ -208,18 +232,21 @@ class BuiltInServer
             CURLOPT_HEADER => 1,
         ]);
         curl_setopt_array($ch, $curlopts);
+
         /** @var mixed $resp */
         $resp = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         list($header, $body) = explode("\r\n\r\n", $resp, 2);
         $raw_headers = explode("\r\n", $header);
         array_shift($raw_headers);
+
         $headers = [];
         foreach ($raw_headers as $header) {
             list($name, $value) = explode(':', $header, 2);
             $headers[trim($name)] = trim($value);
         }
         curl_close($ch);
+
         return [
             'code' => $code,
             'headers' => $headers,
