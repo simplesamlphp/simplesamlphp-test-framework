@@ -24,7 +24,7 @@ class TemplateTest extends TestCase
     /**
      * @return void
      */
-    public function testSyntax()
+    public function testSyntax(): void
     {
         $config = Configuration::loadFromArray([
             'module.enable' => array_fill_keys(Module::getModules(), true),
