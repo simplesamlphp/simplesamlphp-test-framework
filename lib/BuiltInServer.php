@@ -9,9 +9,9 @@ use SimpleSAML\Utils;
 
 use function array_shift;
 use function curl_close;
-use function curl_init;
 use function curl_exec;
 use function curl_getinfo;
+use function curl_init;
 use function curl_setopt_array;
 use function dirname;
 use function exec;
