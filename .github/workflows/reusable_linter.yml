@@ -1,0 +1,144 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      enable_eslinter:
+        description: 'Enable the ES-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      eslinter-config:
+        description: 'The location of the configuration file'
+        type: string
+        required: false
+        default: './tools/linters/eslint.config.js'
+
+      enable_jsonlinter:
+        description: 'Enable the JSON-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+
+      enable_yamllinter:
+        description: 'Enable the YAML-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      yamllinter-config:
+        description: 'The location of the linter-configuration'
+        type: string
+        required: false
+        default: './tools/linters/.yaml-lint.yml'
+
+      enable_stylelinter:
+        description: 'Enable the Style-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      stylelinter-pattern:
+        description: 'The file-pattern to match files that are being linted'
+        type: string
+        required: false
+        default: '**/*.{css,scss,sass}'
+      stylelinter-config:
+        description: 'The location of the linter-configuration'
+        type: string
+        required: false
+        default: 'tools/linters/.stylelintrc.json'
+
+      repository:
+        description: 'The repository that needs linting'
+        type: string
+        default: ${{ github.repository }}
+        required: false
+      ref:
+        description: 'The branch, tag or SHA that needs linting'
+        type: string
+        required: false
+        default: ${{ github.ref }}
+
+jobs:
+  ecmascript-linter:
+    if: inputs.enable_eslinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Install ESLint
+        run: |
+          npm install eslint eslint-config
+
+      - name: Lint JavaScript
+        run: ./node_modules/.bin/eslint --config=${{ inputs.eslinter-config }}
+        env:
+          DEBUG: eslint:languages:js
+
+  json-linter:
+    if: inputs.enable_jsonlinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Lint JSON
+        uses: limitusus/json-syntax-check@v2
+
+  style-linter:
+    if: inputs.enable_stylelinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Install StyleLint
+        run: npm install stylelint stylelint-config-standard
+
+      - name: Lint stylesheets
+        run: |
+          ./node_modules/.bin/stylelint \
+            -f verbose \
+            -c=${{ inputs.stylelinter-config }} ${{ inputs.stylelinter-pattern }}
+
+  yaml-linter:
+    if: inputs.enable_yamllinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Lint YAML
+        uses: ibiqlik/action-yamllint@v3.1.1
+        with:
+          config_file: ${{ inputs.yamllinter-config }}
