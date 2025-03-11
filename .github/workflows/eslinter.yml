@@ -1,0 +1,46 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      repository:
+        description: 'The repository that needs linting'
+        type: string
+        default: ${{ github.repository }}
+        required: false
+      ref:
+        description: 'The branch, tag or SHA that needs linting'
+        type: string
+        required: false
+        default: ${{ github.ref }}
+      config:
+        description: 'The location of the configuration file'
+        type: string
+        required: false
+        default: './tools/linters/eslint.config.js'
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Install ESLint
+        run: |
+          npm install eslint eslint-config
+
+      - name: Lint JavaScript
+        run: ./node_modules/.bin/eslint --config=${{ inputs.config}}
+        env:
+          DEBUG: eslint:languages:js
