@@ -41,6 +41,6 @@ jobs:
           npm install eslint eslint-config
 
       - name: Lint JavaScript
-        run: ./node_modules/.bin/eslint --config=${{ inputs.config}}
+        run: ./node_modules/.bin/eslint --config=${{ inputs.config }}
         env:
           DEBUG: eslint:languages:js

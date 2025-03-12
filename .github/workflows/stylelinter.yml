@@ -22,13 +22,18 @@ on:  # yamllint disable-line rule:truthy
         description: 'The location of the linter-configuration'
         type: string
         required: false
-        default: 'tools/linters/'
+        default: 'tools/linters/.stylelintrc.json'
 
 jobs:
   linter:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
@@ -36,9 +41,8 @@ jobs:
           repository: ${{ inputs.repository }}
           ref: ${{ inputs.ref }}
 
+      - name: Install StyleLint
+        run: npm install stylelint stylelint-config-standard
+
       - name: Lint stylesheets
-        uses: actions-hub/stylelint@v1.1.6
-        env:
-          PATTERN: ${{ inputs.pattern }}
-          INDENT_SPACES: 2
-          CONFIG_PATH: ${{ inputs.config_file }}
+        run: ./node_modules/.bin/stylelint -f verbose -c=${{ inputs.config_file }} ${{ inputs.pattern }}
