@@ -22,7 +22,7 @@ on:  # yamllint disable-line rule:truthy
         description: 'The location of the linter-configuration'
         type: string
         required: false
-        default: 'tools/linters/.stylelintrc.json'
+        default: 'tools/linters/'
 
 jobs:
   linter:
