@@ -1,0 +1,65 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      repository:
+        description: 'The repository that needs linting'
+        type: string
+        default: ${{ github.repository }}
+        required: false
+      ref:
+        description: 'The branch, tag or SHA that needs linting'
+        type: string
+        required: false
+        default: ${{ github.ref }}
+      config_file:
+        description: 'The location of the linter-configuration'
+        type: string
+        required: false
+        default: 'tools/linters/xmllinter.json'
+  workflow_dispatch:
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      #- name: "Read JSON"
+      #  uses: actions/github-script@v6
+      #  id: check-env
+      #  with:
+      #    result-encoding: string
+      #    script: |
+      #      try {
+      #        const fs = require('fs')
+      #        const jsonString = fs.readFileSync('./xmllint.json')
+      #        var config = JSON.parse(jsonString)
+      #      } catch(err) {
+      #        core.error("Error while reading or parsing the JSON")
+      #        core.setFailed(err)
+      #      }
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Read JSON file # this puts the whole JSON file in the read-json step output
+        id: read-json
+        run: | # to read multi-line JSON file and not bother with escaping
+          if [ -f "${{ inputs.config_file }}" ]; then
+            echo "config<<EOF" >> $GITHUB_OUTPUT
+            cat ${{ inputs.config_file }} >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "config={}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Lint XML
+        run: |
+            echo ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, 'bullshit') }}
+            echo ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, '/path/to/file') }}
+            echo ${{ steps.read-json.outputs.config }}
