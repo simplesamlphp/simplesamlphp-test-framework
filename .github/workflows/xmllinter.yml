@@ -53,7 +53,9 @@ jobs:
           #else
           #  echo "files={}" >> $GITHUB_OUTPUT
           #fi
-          echo "files=${FILES}" >> $GITHUB_OUTPUT
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "${FILES}" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Lint XML
         run: |
