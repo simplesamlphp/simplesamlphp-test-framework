@@ -57,7 +57,10 @@ jobs:
 
       - name: Lint XML
         run: |
-          FILES=$(echo "${{ steps.find-xml.outputs.files }}" | jq -c '.[]')
-          for item in "${FILES}"; do
-            echo "${item}"
+          echo "${{ steps.find-xml.outputs.files }}" | jq -c '.[]' | while read i; do
+            echo ${i}
           done
+          #FILES=$(echo "${{ steps.find-xml.outputs.files }}" | jq -c '.[]')
+          #for item in "${FILES}"; do
+          #  echo "${item}"
+          #done
