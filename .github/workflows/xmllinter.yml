@@ -55,7 +55,7 @@ jobs:
       - name: Lint XML
         id: linter
         run: |
-          echo '${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}' | jq -c '.[]'
+          echo '${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}' | jq -c '.'
 
           echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
             echo "current_file=${i}" >> "$GITHUB_ENV"
