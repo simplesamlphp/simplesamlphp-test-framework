@@ -46,6 +46,12 @@ jobs:
             echo "config={}" >> $GITHUB_OUTPUT
           fi
 
+      - name: Substract ignore-list from config
+        id: read-ignore
+        run: |
+          IGNORE=`echo '${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}' | jq -c '.'`
+          echo "ignore=${IGNORE}" >> $GITHUB_OUTPUT
+
       - name: Find all XML-files in this repository
         id: find-xml
         run: |
@@ -55,12 +61,11 @@ jobs:
       - name: Lint XML
         id: linter
         run: |
-          echo '${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}' | jq -c '.'
 
           echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
-            echo "current_file=${i}" >> "$GITHUB_ENV"
-            echo jq --null-input '${{ steps.find-xml.outputs.filelist }} - ${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}'
-            if [ "${{ contains(fromJSON(steps.read-json.outputs.config).ignore, './phpcs.xml') }}" = "true" ]; then
+            ignore=`jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}'`
+
+            if [ "$ignore" = "[]" ]; then
               echo "Skipping ${i}"
             else
               echo "Linting ${i}"
