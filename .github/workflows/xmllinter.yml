@@ -55,7 +55,7 @@ jobs:
       - name: Lint XML
         run: |
           echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
-            if [ ${{ contains(steps.read-json.outputs.config).ignore, i) }} -eq "true"]
+            if [ ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, i) }} -eq "true"]
               echo "Skipping ${i}"
             else
               echo "Linting ${i}"
