@@ -58,7 +58,7 @@ jobs:
           echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
             echo "current_file=${i}" >> "$GITHUB_ENV"
 
-            echo jq --null-input '${{ steps.find-xml.outputs.filelist }} - ${{ fromJSON(steps.read-json.outputs.config).ignore }}'
+            echo jq --null-input '${{ steps.find-xml.outputs.filelist }} - ${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}'
             if [ "${{ contains(fromJSON(steps.read-json.outputs.config).ignore, './phpcs.xml') }}" = "true" ]; then
               echo "Skipping ${i}"
             else
