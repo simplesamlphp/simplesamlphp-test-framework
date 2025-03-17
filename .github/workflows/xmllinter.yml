@@ -52,7 +52,7 @@ jobs:
           done
 
           echo "files<<EOF" >> $GITHUB_OUTPUT
-          printf '%s\n' "${FILES[@]}" | jq -R . | jq -s . >> $GITHUB_OUTPUT
+          printf '%s' "${FILES[@]}" | jq -R . | jq -s . >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Lint XML
