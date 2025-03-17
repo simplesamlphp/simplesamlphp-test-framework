@@ -58,7 +58,7 @@ jobs:
 
       - name: Lint XML
         run: |
-          FILES=${{ fromJSON(steps.read-json.outputs.files) }}
+          FILES=${{ fromJSON(steps.find-xml.outputs.files) }}
           for item in ${FILES}; do
             echo "${item}"
           done
