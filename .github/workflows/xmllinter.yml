@@ -51,13 +51,15 @@ jobs:
             echo "${item}"
           done
 
-          echo "files<<EOF" >> $GITHUB_OUTPUT
-          printf '%s' "${FILES[@]}" | jq -R . | jq -s . >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          filelist=`find . -type f -iname "*.xml" | jo -a`
+          #echo "files<<EOF" >> $GITHUB_OUTPUT
+          #printf '%s' "${FILES[@]}" | jq -R . | jq -s . >> $GITHUB_OUTPUT
+          #echo "EOF" >> $GITHUB_OUTPUT
+          echo "files=${filelist}" >> $GITHUB_OUTPUT
 
       - name: Lint XML
         run: |
-          echo "${{ steps.find-xml.outputs.files }}" | jq -c '.[]' | while read i; do
+          echo "${{ steps.find-xml.outputs.filelist }}" | jq -c '.[]' | while read i; do
             echo ${i}
           done
           #FILES=$(echo "${{ steps.find-xml.outputs.files }}" | jq -c '.[]')
