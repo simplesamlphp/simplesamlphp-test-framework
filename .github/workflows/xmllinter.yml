@@ -53,9 +53,12 @@ jobs:
           echo "filelist=${filelist}" >> $GITHUB_OUTPUT
 
       - name: Lint XML
+        id: linter
         run: |
           echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
-            if [ ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, i) }} -eq "true"]
+            echo "current_file=${i}" >> $GITHUB_OUTPUT
+
+            if [ ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, steps.linter.outputs.current_file) }} -eq "true"]
               echo "Skipping ${i}"
             else
               echo "Linting ${i}"
