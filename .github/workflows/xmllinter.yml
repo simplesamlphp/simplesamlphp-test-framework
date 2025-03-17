@@ -52,12 +52,13 @@ jobs:
           done
 
           echo "files<<EOF" >> $GITHUB_OUTPUT
-          echo "${FILES}" >> $GITHUB_OUTPUT
+          printf '%s\n' "${FILES[@]}" | jq -R . | jq -s . >> $GITHUB_OUTPUT
+          #echo "${FILES}" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Lint XML
         run: |
-          FILES=${{ steps.read-json.outputs.files }}
+          FILES=${{ fromJSON(steps.read-json.outputs.files) }}
           for item in ${FILES}; do
             echo "${item}"
           done
