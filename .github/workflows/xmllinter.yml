@@ -48,12 +48,12 @@ jobs:
         run: |
           FILES=`find . -type f -iname "*.xml"`
           for item in ${FILES}[@]; do
-            #if [ ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, item) }} -eq "true"]; then
-            #  echo "Skip"
-            #else
-              echo "${item}"
-            #fi
+            echo "${item}"
           done
+          #if [ ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, item) }} -eq "true"]; then
+          #  echo "Skip"
+          #else
+          #fi
           #if [[ "${FILES}" != "" ]]; then
           #  JSON=`printf '%s\n' "${FILES[@]}" | jq -R . | jq -s .`
           #  echo "files=${JSON}" >> $GITHUB_OUTPUT
