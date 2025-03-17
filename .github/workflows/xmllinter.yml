@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Install required tools
-        run: apt-get -y install jo
+        run: sudo apt-get -y install jo
 
       - name: Checkout Code
         uses: actions/checkout@v4
