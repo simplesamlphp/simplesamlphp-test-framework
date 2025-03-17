@@ -58,7 +58,10 @@ jobs:
           echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
             echo "current_file=${i}" >> $GITHUB_OUTPUT
 
-            if [ ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, steps.linter.outputs.current_file) }} -eq "true"]
+            if [ ${{ contains(
+                fromJSON(steps.read-json.outputs.config).ignore,
+                steps.linter.outputs.current_file) }} -eq "true"
+            ]; then
               echo "Skipping ${i}"
             else
               echo "Linting ${i}"
