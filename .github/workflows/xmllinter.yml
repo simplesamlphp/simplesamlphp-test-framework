@@ -60,7 +60,7 @@ jobs:
 
       - name: Lint XML
         run: |
-          for item in "${{ steps.find-xml.outputs.files }}"; do
+          for item in "${{ steps.find-xml.outputs.files }}[@]"; do
             echo "${item}"
           done
           #echo ${{ contains(fromJSON(steps.read-json.outputs.config).ignore, 'bullshit') }}
