@@ -47,7 +47,7 @@ jobs:
         id: find-xml
         run: |
           FILES=`find . -type f -iname "*.xml"`
-          for item in ${FILES}[@]; do
+          for item in ${FILES}; do
             echo "${item}"
           done
 
@@ -58,6 +58,6 @@ jobs:
       - name: Lint XML
         run: |
           FILES=${{ steps.read-json.outputs.files }}
-          for item in ${FILES}[@]; do
+          for item in ${FILES}; do
             echo "${item}"
           done
