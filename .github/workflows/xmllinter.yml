@@ -39,31 +39,33 @@ jobs:
         id: read-json
         run: |  # to read multi-line JSON file and not bother with escaping
           if [ -f "${{ inputs.config_file }}" ]; then
-            echo "config<<EOF" >> $GITHUB_OUTPUT
-            cat ${{ inputs.config_file }} >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
+            {
+                echo "config<<EOF";
+                cat "${{ inputs.config_file }}";
+                echo "EOF";
+            } >> "$GITHUB_OUTPUT"
           else
-            echo "config={}" >> $GITHUB_OUTPUT
+            echo "config={}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Substract ignore-list from config
         id: read-ignore
         run: |
-          IGNORE=`echo '${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}' | jq -c '.'`
-          echo "ignore=${IGNORE}" >> $GITHUB_OUTPUT
+          IGNORE="$(echo '${{ toJSON(fromJSON(steps.read-json.outputs.config).ignore) }}' | jq -c '.')"
+          echo "ignore=${IGNORE}" >> "$GITHUB_OUTPUT"
 
       - name: Find all XML-files in this repository
         id: find-xml
         run: |
-          filelist=`find . -type f -iname "*.xml" | jo -a`
-          echo "filelist=${filelist}" >> $GITHUB_OUTPUT
+          filelist="$(find . -type f -iname "*.xml" | jo -a)"
+          echo "filelist=${filelist}" >> "$GITHUB_OUTPUT"
 
       - name: Lint XML
         id: linter
         run: |
-
-          echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read i; do
-            ignore=`jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}'`
+          echo $("${{ steps.find-xml.outputs.filelist }}") | jq -c '.[]' | while read i; do
+            ignore="$(jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}')"
+            echo "$(jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}')"
 
             if [ "$ignore" = "[]" ]; then
               echo "Skipping ${i}"
