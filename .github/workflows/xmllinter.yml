@@ -63,9 +63,9 @@ jobs:
       - name: Lint XML
         id: linter
         run: |
-          echo $("${{ steps.find-xml.outputs.filelist }}") | jq -c '.[]' | while read i; do
-            ignore="$(jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}')"
-            echo "$(jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}')"
+          echo '${{ steps.find-xml.outputs.filelist }}' | jq -c '.[]' | while read -r i; do
+            ignore=$(jq --null-input '["${i}"] - ${{ steps.read-ignore.outputs.ignore }}')
+            echo "$ignore"
 
             if [ "$ignore" = "[]" ]; then
               echo "Skipping ${i}"
