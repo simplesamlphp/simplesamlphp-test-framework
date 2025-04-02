@@ -1,0 +1,212 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      enable_phplinter:
+        description: 'Enable the PHP-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      phplinter-versions:
+        description: 'The PHP-version to use for linting'
+        type: string
+        required: false
+        default: '["8.1", "8.2", "8.3", "8.4"]'
+
+      enable_eslinter:
+        description: 'Enable the ES-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      eslinter-config:
+        description: 'The location of the configuration file'
+        type: string
+        required: false
+        default: './tools/linters/eslint.config.js'
+
+      enable_jsonlinter:
+        description: 'Enable the JSON-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+
+      enable_yamllinter:
+        description: 'Enable the YAML-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      yamllinter-config:
+        description: 'The location of the linter-configuration'
+        type: string
+        required: false
+        default: './tools/linters/.yaml-lint.yml'
+
+      enable_stylelinter:
+        description: 'Enable the Style-Linter for this repository'
+        type: boolean
+        required: false
+        default: false
+      stylelinter-pattern:
+        description: 'The file-pattern to match files that are being linted'
+        type: string
+        required: false
+        default: '**/*.{css,scss,sass}'
+      stylelinter-config:
+        description: 'The location of the linter-configuration'
+        type: string
+        required: false
+        default: 'tools/linters/.stylelintrc.json'
+
+      repository:
+        description: 'The repository that needs linting'
+        type: string
+        default: ${{ github.repository }}
+        required: false
+      ref:
+        description: 'The branch, tag or SHA that needs linting'
+        type: string
+        required: false
+        default: ${{ github.ref }}
+
+env:
+  php_supported_versions: '["7.4", "8.0", "8.1", "8.2", "8.3", "8.4"]'
+
+jobs:
+  phplinter:
+    if: inputs.enable_phplinter == true
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php_version: ${{ fromJSON(inputs.phplinter-versions) }}
+
+    steps:
+      - name: Supported version check
+        if: contains(fromJSON(env.php_supported_versions), matrix.php_version) == false
+        run: exit 1
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Setup PHP runtime
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: phive
+          php-version: ${{ matrix.php_version }}
+          coverage: "none"
+
+      - name: Install overtrue/phplint (v3.4)
+        if: matrix.php_version == '7.4'
+        run: |
+          phive install overtrue/phplint@~3.4.0 --force-accept-unsigned --target ./bin
+
+      - name: Install overtrue/phplint (v4.5)
+        if: matrix.php_version == '8.0'
+        run: |
+          phive install overtrue/phplint@~4.5.0 --force-accept-unsigned --target ./bin
+
+      - name: Install overtrue/phplint (v9.4)
+        if: matrix.php_version == '8.1'
+        run: |
+          phive install overtrue/phplint@~9.4.0 --force-accept-unsigned --target ./bin
+
+      - name: Install overtrue/phplint (v9.5)
+        if: |
+            matrix.php_version != '7.4'
+            && matrix.php_version != '8.0'
+            && matrix.php_version != '8.1'
+        run: |
+          phive install overtrue/phplint@~9.5.0 --force-accept-unsigned --target ./bin
+
+      - name: Lint PHP files
+        run: |
+          ./bin/phplint --no-cache --no-progress -v
+
+  ecmascript-linter:
+    if: inputs.enable_eslinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Install ESLint
+        run: |
+          npm install eslint eslint-config
+
+      - name: Lint JavaScript
+        run: ./node_modules/.bin/eslint --config=${{ inputs.eslinter-config }}
+        env:
+          DEBUG: eslint:languages:js
+
+  json-linter:
+    if: inputs.enable_jsonlinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Lint JSON
+        uses: limitusus/json-syntax-check@v2
+
+  style-linter:
+    if: inputs.enable_stylelinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Install StyleLint
+        run: npm install stylelint stylelint-config-standard
+
+      - name: Lint stylesheets
+        run: |
+          ./node_modules/.bin/stylelint \
+            -f verbose \
+            -c=${{ inputs.stylelinter-config }} ${{ inputs.stylelinter-pattern }}
+
+  yaml-linter:
+    if: inputs.enable_yamllinter == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Lint YAML
+        uses: ibiqlik/action-yamllint@v3.1.1
+        with:
+          config_file: ${{ inputs.yamllinter-config }}
