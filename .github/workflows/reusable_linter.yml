@@ -142,3 +142,4 @@ jobs:
         uses: ibiqlik/action-yamllint@v3.1.1
         with:
           config_file: ${{ inputs.yamllinter-config }}
+          file_or_dir: '**/*.yaml **/*.yml'
