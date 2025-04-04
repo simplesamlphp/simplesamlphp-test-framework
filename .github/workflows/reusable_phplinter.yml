@@ -1,0 +1,69 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      php-version:
+        description: 'The PHP-version to use for linting'
+        type: string
+        required: true
+      repository:
+        description: 'The repository that needs linting'
+        type: string
+        required: false
+        default: ${{ github.repository }}
+      ref:
+        description: 'The branch, tag or SHA that needs linting'
+        type: string
+        required: false
+        default: ${{ github.ref }}
+
+env:
+  supported: '["7.4", "8.0", "8.1", "8.2", "8.3", "8.4"]'
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Supported version check
+        if: contains(fromJSON(env.supported), inputs.php-version) == false
+        run: exit 1
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.ref }}
+
+      - name: Setup PHP runtime
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: phive
+          php-version: ${{ inputs.php-version }}
+          coverage: "none"
+
+      - name: Install overtrue/phplint (v3.4)
+        if: inputs.php-version == '7.4'
+        run: |
+          phive install overtrue/phplint@~3.4.0 --force-accept-unsigned --target ./bin
+
+      - name: Install overtrue/phplint (v4.5)
+        if: inputs.php-version == '8.0'
+        run: |
+          phive install overtrue/phplint@~4.5.0 --force-accept-unsigned --target ./bin
+
+      - name: Install overtrue/phplint (v9.4)
+        if: inputs.php-version == '8.1'
+        run: |
+          phive install overtrue/phplint@~9.4.0 --force-accept-unsigned --target ./bin
+
+      - name: Install overtrue/phplint (v9.5)
+        if: inputs.php-version != '7.4' && inputs.php-version != '8.0' && inputs.php-version != '8.1'
+        run: |
+          phive install overtrue/phplint@~9.5.0 --force-accept-unsigned --target ./bin
+
+      - name: Lint PHP files
+        run: |
+          ./bin/phplint --no-cache --no-progress -v

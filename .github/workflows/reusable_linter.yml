@@ -3,17 +3,6 @@
 on:  # yamllint disable-line rule:truthy
   workflow_call:
     inputs:
-      enable_phplinter:
-        description: 'Enable the PHP-Linter for this repository'
-        type: boolean
-        required: false
-        default: false
-      phplinter-versions:
-        description: 'The PHP-version to use for linting'
-        type: string
-        required: false
-        default: '["8.1", "8.2", "8.3", "8.4"]'
-
       enable_eslinter:
         description: 'Enable the ES-Linter for this repository'
         type: boolean
@@ -69,64 +58,7 @@ on:  # yamllint disable-line rule:truthy
         required: false
         default: ${{ github.ref }}
 
-env:
-  php_supported_versions: '["7.4", "8.0", "8.1", "8.2", "8.3", "8.4"]'
-
 jobs:
-  phplinter:
-    if: inputs.enable_phplinter == true
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        php_version: ${{ fromJSON(inputs.phplinter-versions) }}
-
-    steps:
-      - name: Supported version check
-        if: contains(fromJSON(env.php_supported_versions), matrix.php_version) == false
-        run: exit 1
-
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          repository: ${{ inputs.repository }}
-          ref: ${{ inputs.ref }}
-
-      - name: Setup PHP runtime
-        uses: shivammathur/setup-php@v2
-        with:
-          tools: phive
-          php-version: ${{ matrix.php_version }}
-          coverage: "none"
-
-      - name: Install overtrue/phplint (v3.4)
-        if: matrix.php_version == '7.4'
-        run: |
-          phive install overtrue/phplint@~3.4.0 --force-accept-unsigned --target ./bin
-
-      - name: Install overtrue/phplint (v4.5)
-        if: matrix.php_version == '8.0'
-        run: |
-          phive install overtrue/phplint@~4.5.0 --force-accept-unsigned --target ./bin
-
-      - name: Install overtrue/phplint (v9.4)
-        if: matrix.php_version == '8.1'
-        run: |
-          phive install overtrue/phplint@~9.4.0 --force-accept-unsigned --target ./bin
-
-      - name: Install overtrue/phplint (v9.5)
-        if: |
-            matrix.php_version != '7.4'
-            && matrix.php_version != '8.0'
-            && matrix.php_version != '8.1'
-        run: |
-          phive install overtrue/phplint@~9.5.0 --force-accept-unsigned --target ./bin
-
-      - name: Lint PHP files
-        run: |
-          ./bin/phplint --no-cache --no-progress -v
-
   ecmascript-linter:
     if: inputs.enable_eslinter == true
     runs-on: ubuntu-latest
