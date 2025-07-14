@@ -47,21 +47,25 @@ jobs:
       - name: Install overtrue/phplint (v3.4)
         if: inputs.php-version == '7.4'
         run: |
+          sleep $((random % 10))
           phive install overtrue/phplint@~3.4.0 --force-accept-unsigned --target ./bin
 
       - name: Install overtrue/phplint (v4.5)
         if: inputs.php-version == '8.0'
         run: |
+          sleep $((random % 10))
           phive install overtrue/phplint@~4.5.0 --force-accept-unsigned --target ./bin
 
       - name: Install overtrue/phplint (v9.4)
         if: inputs.php-version == '8.1'
         run: |
+          sleep $((random % 10))
           phive install overtrue/phplint@~9.4.0 --force-accept-unsigned --target ./bin
 
       - name: Install overtrue/phplint (v9.5)
         if: inputs.php-version != '7.4' && inputs.php-version != '8.0' && inputs.php-version != '8.1'
         run: |
+          sleep $((random % 10))
           phive install overtrue/phplint@~9.5.0 --force-accept-unsigned --target ./bin
 
       - name: Lint PHP files
