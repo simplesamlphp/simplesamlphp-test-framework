@@ -17,15 +17,18 @@ class ArrayLogger implements LoggingHandlerInterface
      */
     public array $logs = [];
 
+
     public function __construct(Configuration $config)
     {
         // don't do anything with the configuration
     }
 
+
     public function log(int $level, string $string): void
     {
         $this->logs[$level][] = $string;
     }
+
 
     public function setLogFormat(string $format): void
     {
