@@ -43,6 +43,7 @@ jobs:
           tools: phive
           php-version: ${{ inputs.php-version }}
           coverage: "none"
+          extensions: :redis
 
       - name: Install overtrue/phplint (v3.4)
         if: inputs.php-version == '7.4'
