@@ -193,12 +193,15 @@ jobs:
       - name: Check code for unused dependencies in composer.json
         run: |
           composer-unused \
-          --excludePackage=slevomat/coding-standard \
-          --excludePackage=symfony/phpunit-bridge \
-          --excludePackage=squizlabs/php_codesniffer \
+          --excludePackage=icanhazstring/composer-unused \
+          --excludePackage=maglnet/composer-require-checker \
           --excludePackage=phpstan/phpstan \
           --excludePackage=phpstan/extension-installer \
-          --excludePackage=phpstan/phpstan-mockery
+          --excludePackage=phpstan/phpstan-mockery \
+          --excludePackage=phpstan/phpstan-phpunit \
+          --excludePackage=slevomat/coding-standard \
+          --excludePackage=squizlabs/php_codesniffer \
+          --excludePackage=symfony/phpunit-bridge
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
