@@ -33,7 +33,7 @@
         "phpunit/phpunit": "^11.5 || ^12.3",
         "psr/log": "^3.0",
         "slevomat/coding-standard": "^8.20",
-        "squizlabs/php_codesniffer": "^3.13 || ^4.0",
+        "squizlabs/php_codesniffer": "^4.0",
         "symfony/phpunit-bridge": "^7.3 || ^8.0"
     },
     "require-dev": {
