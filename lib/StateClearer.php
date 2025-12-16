@@ -16,15 +16,13 @@ class StateClearer
 {
     /**
      * Global state to restore between test runs
-     * @var array
      */
-    private $backups = [];
+    private array $backups = [];
 
     /**
      * Class that implement \SimpleSAML\Utils\ClearableState and should have clearInternalState called between tests
-     * @var array
      */
-    private $clearableState = [
+    private array $clearableState = [
         Configuration::class,
         MetaDataStorageHandler::class,
         Session::class,
@@ -33,15 +31,13 @@ class StateClearer
 
     /**
      * Environmental variables to unset
-     * @var array
      */
-    private $vars_to_unset = ['SIMPLESAMLPHP_CONFIG_DIR'];
+    private array $vars_to_unset = ['SIMPLESAMLPHP_CONFIG_DIR'];
 
 
     /**
-     * @return void
      */
-    public function backupGlobals()
+    public function backupGlobals(): void
     {
         // Backup any state that is needed as part of processing, so we can restore it later.
         // TODO: phpunit's backupGlobals = false, yet we are trying to do a similar thing here. Is that an issue?
@@ -51,7 +47,6 @@ class StateClearer
         $this->backups['$_GET'] = $_GET;
         $this->backups['$_POST'] = $_POST;
         $this->backups['$_SERVER'] = $_SERVER;
-        /** @psalm-suppress RedundantCondition */
         $this->backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : [];
         $this->backups['$_REQUEST'] = $_REQUEST;
     }
@@ -59,9 +54,8 @@ class StateClearer
 
     /**
      * Clear any global state.
-     * @return void
      */
-    public function clearGlobals()
+    public function clearGlobals(): void
     {
         if (!empty($this->backups)) {
             $_COOKIE = $this->backups['$_COOKIE'];
@@ -80,9 +74,8 @@ class StateClearer
 
     /**
      * Clear any SSP specific state, such as SSP enviormental variables or cached internals.
-     * @return void
      */
-    public function clearSSPState()
+    public function clearSSPState(): void
     {
         foreach ($this->clearableState as $var) {
             $var::clearInternalState();

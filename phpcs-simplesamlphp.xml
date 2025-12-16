@@ -29,6 +29,9 @@
   <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInClosureUse" />
   <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration" />
 
+  <!-- Enforce the use of typed constants -->
+  <rule ref="SlevomatCodingStandard.TypeHints.ClassConstantTypeHint" />
+
   <!-- Require one blank line between different types of use-statements -->
   <rule ref="SlevomatCodingStandard.Namespaces.UseSpacing">
     <properties>

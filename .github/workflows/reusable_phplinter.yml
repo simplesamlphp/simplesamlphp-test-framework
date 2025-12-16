@@ -19,7 +19,7 @@ on:  # yamllint disable-line rule:truthy
         default: ${{ github.ref }}
 
 env:
-  supported: '["7.4", "8.0", "8.1", "8.2", "8.3", "8.4", "8.5"]'
+  supported: '["8.3", "8.4", "8.5"]'
 
 jobs:
   linter:
@@ -45,29 +45,10 @@ jobs:
           coverage: "none"
           extensions: :redis
 
-      - name: Install overtrue/phplint (v3.4)
-        if: inputs.php-version == '7.4'
+      - name: Install overtrue/phplint (v9.7)
         run: |
           sleep $((random % 10))
-          phive install overtrue/phplint@~3.4.0 --force-accept-unsigned --target ./bin
-
-      - name: Install overtrue/phplint (v4.5)
-        if: inputs.php-version == '8.0'
-        run: |
-          sleep $((random % 10))
-          phive install overtrue/phplint@~4.5.0 --force-accept-unsigned --target ./bin
-
-      - name: Install overtrue/phplint (v9.4)
-        if: inputs.php-version == '8.1'
-        run: |
-          sleep $((random % 10))
-          phive install overtrue/phplint@~9.4.0 --force-accept-unsigned --target ./bin
-
-      - name: Install overtrue/phplint (v9.6)
-        if: inputs.php-version != '7.4' && inputs.php-version != '8.0' && inputs.php-version != '8.1'
-        run: |
-          sleep $((random % 10))
-          phive install overtrue/phplint@~9.6.0 --force-accept-unsigned --target ./bin
+          phive install overtrue/phplint@~9.7.1 --force-accept-unsigned --target ./bin
 
       - name: Lint PHP files
         run: |

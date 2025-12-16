@@ -8,7 +8,6 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggingHandlerInterface;
 
 /**
- * @deprecated - superseeded by PSR-3 compliant SimpleTestLogger
  */
 class ArrayLogger implements LoggingHandlerInterface
 {
@@ -18,6 +17,7 @@ class ArrayLogger implements LoggingHandlerInterface
     public array $logs = [];
 
 
+    #[\Deprecated('Superseeded by PSR-3 compliant SimpleTestLogger', '20-05-2023')]
     public function __construct(Configuration $config)
     {
         // don't do anything with the configuration

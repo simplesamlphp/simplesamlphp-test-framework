@@ -16,13 +16,10 @@ use Twig\Source;
  *
  * @author Tim van Dijen <tvdijen@gmail.com>
  * @package SimpleSAMLphp
- *
- * @psalm-suppress InternalMethod
  */
 class TemplateTest extends TestCase
 {
     /**
-     * @return void
      */
     public function testSyntax(): void
     {

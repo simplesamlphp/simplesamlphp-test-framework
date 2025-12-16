@@ -18,7 +18,6 @@ use function count;
 final class SimpleTestLogger extends AbstractLogger
 {
     /**
-     * @var array
      */
     private array $messages = [];
 
@@ -27,8 +26,6 @@ final class SimpleTestLogger extends AbstractLogger
      * @param mixed $level
      * @param string|\Stringable $message
      * @param mixed[] $context
-     *
-     * @return void
      */
     public function log($level, string|Stringable $message, array $context = []): void
     {
@@ -44,8 +41,6 @@ final class SimpleTestLogger extends AbstractLogger
      * Get all the messages logged at the specified level
      *
      * @param mixed $level
-     *
-     * @return array
      */
     public function getMessagesForLevel($level): array
     {
@@ -59,8 +54,6 @@ final class SimpleTestLogger extends AbstractLogger
      * Check if the given message exists within the log
      *
      * @param string|\Stringable $messageToFind
-     *
-     * @return bool
      */
     public function hasMessage(string|Stringable $messageToFind): bool
     {
