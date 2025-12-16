@@ -16,42 +16,31 @@ use SimpleSAML\Configuration;
  */
 class SigningTestCase extends TestCase
 {
-    /** @var \SimpleSAML\Configuration */
-    protected $config;
+    protected Configuration $config;
 
-    /** @var string $root_directory */
-    protected $root_directory;
+    protected string $root_directory;
 
-    /** @var string $cert_directory */
-    protected $cert_directory = 'certificates/rsa-pem';
+    protected string $cert_directory = 'certificates/rsa-pem';
 
-    /** @var string $ca_private_key_file */
-    protected $ca_private_key_file = 'simplesamlphp.org-ca_nopasswd.key';
+    protected string $ca_private_key_file = 'simplesamlphp.org-ca_nopasswd.key';
 
-    /** @var string $ca_certificate_file */
-    protected $ca_certificate_file = 'simplesamlphp.org-ca.crt';
+    protected string $ca_certificate_file = 'simplesamlphp.org-ca.crt';
 
-    /** @var string $good_private_key_file */
-    protected $good_private_key_file = 'signed.simplesamlphp.org_nopasswd.key';
+    protected string $good_private_key_file = 'signed.simplesamlphp.org_nopasswd.key';
 
-    /** @var string $good_certificate_file */
-    protected $good_certificate_file = 'signed.simplesamlphp.org.crt';
+    protected string $good_certificate_file = 'signed.simplesamlphp.org.crt';
 
     // openssl genrsa -out example.org-ca.key 1024
-    /** @var string $ca_private_key */
-    protected $ca_private_key;
+    protected string $ca_private_key;
 
     // openssl req -key example.org-ca.key -new -x509 -days 36500 -out example.org-ca.crt
-    /** @var string $ca_certificate */
-    protected $ca_certificate;
+    protected string $ca_certificate;
 
     // openssl genrsa -out signed.example.org.key 1024
-    /** @var string $good_private_key */
-    protected $good_private_key;
+    protected string $good_private_key;
 
     // openssl req -key signed.example.org.key -new -out signed.example.org.crt
-    /** @var string $good_certificate */
-    protected $good_certificate;
+    protected string $good_certificate;
 
 
     /**
@@ -69,7 +58,6 @@ class SigningTestCase extends TestCase
 
 
     /**
-     * @return array
      */
     public function getCertDirContent(): array
     {
@@ -83,7 +71,6 @@ class SigningTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     public function setUp(): void
     {
@@ -94,7 +81,6 @@ class SigningTestCase extends TestCase
 
 
     /**
-     * @return void
      */
     public function tearDown(): void
     {
@@ -106,7 +92,6 @@ class SigningTestCase extends TestCase
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      * @param mixed|null $value
-     * @return void
      */
     protected function clearInstance(Configuration $service, string $className, $value = null): void
     {

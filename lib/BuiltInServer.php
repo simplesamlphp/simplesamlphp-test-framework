@@ -41,31 +41,23 @@ class BuiltInServer
 {
     /**
      * The PID of the running server.
-     *
-     * @var int
      */
-    protected $pid = 0;
+    protected int $pid = 0;
 
     /**
      * The address (host:port) where the server is listening for connections after being started.
-     *
-     * @var string
      */
-    protected $address = 'example.org';
+    protected string $address = 'example.org';
 
     /**
      * The name of a "router" file to run for every request performed to this server.
-     *
-     * @var string
      */
-    protected $router = '';
+    protected string $router = '';
 
     /**
      * The document root of the server.
-     *
-     * @var string
      */
-    protected $docroot;
+    protected string $docroot;
 
 
     /**
@@ -158,7 +150,6 @@ class BuiltInServer
 
     /**
      * Stop the built-in server.
-     * @return void
      */
     public function stop(): void
     {
@@ -200,7 +191,6 @@ class BuiltInServer
      * Set the "router" file.
      *
      * @param string $router The name of a "router" file to use when starting the server.
-     * @return void
      */
     public function setRouter(string $router): void
     {

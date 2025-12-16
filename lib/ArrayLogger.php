@@ -10,6 +10,7 @@ use SimpleSAML\Logger\LoggingHandlerInterface;
 /**
  * @deprecated - superseeded by PSR-3 compliant SimpleTestLogger
  */
+#[Deprecated]
 class ArrayLogger implements LoggingHandlerInterface
 {
     /**
