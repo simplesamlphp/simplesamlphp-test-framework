@@ -53,7 +53,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: ctype, date, dom, fileinfo, filter, hash, json, mbstring, mysql, openssl, pcre,\
-            pdo, pdo_sqlite, posix, soap, spl, xdebug, xml
+            pdo, pdo_sqlite, posix, soap, sodium, spl, xdebug, xml
           tools: composer
           ini-values: error_reporting=E_ALL, pcov.directory=.
           coverage: pcov
