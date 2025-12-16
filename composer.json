@@ -37,7 +37,7 @@
         "symfony/phpunit-bridge": "^7.3 || ^8.0"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp": "^2.4"
+        "simplesamlphp/simplesamlphp": "^2.5@dev"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",

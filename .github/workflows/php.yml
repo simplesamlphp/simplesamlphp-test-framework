@@ -115,8 +115,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, dom, date, fileinfo, filter, hash, json, mbstring, mysql, openssl, pcre, \
-            pdo, pdo_sqlite, posix, soap, spl, xdebug, xml, zip
+          extensions: ctype, dom, date, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre, \
+            pdo, pdo_sqlite, posix, soap, sodium, spl, xdebug, xml, zip
           tools: composer
           ini-values: error_reporting=E_ALL
           coverage: none
@@ -164,7 +164,7 @@ jobs:
           # Should be the higest supported version, so we can use the newest tools
           php-version: '8.5'
           tools: composer, composer-require-checker, composer-unused
-          extensions: ctype, date, dom, filter, hash, intl, mbstring, opcache, openssl, pcre, spl, xml
+          extensions: ctype, date, dom, filter, hash, intl, mbstring, opcache, openssl, pcre, sodium, spl, xml
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
