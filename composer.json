@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\TestUtils\\": "lib/"
+            "SimpleSAML\\TestUtils\\": "lib/",
+            "SimpleSAML\\TestUtils\\": "src/"
         }
     },
     "autoload-dev": {
