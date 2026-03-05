@@ -9,6 +9,9 @@
   <!-- Do not allow unnecessary spaces inside arbitrary parentheses -->
   <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
 
+  <!-- Complain about unresolved merge conflicts -->
+  <rule ref="Generic.VersionControl.GitMergeConflict" />
+
   <config name="installed_paths" value="vendor/slevomat/coding-standard"/>
 
   <!-- Use fully qualified class names in annotations and PHPdoc -->
