@@ -31,7 +31,7 @@
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-mockery": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
-        "phpunit/phpunit": "^12.3",
+        "phpunit/phpunit": "^12.3 || ^13.0",
         "psr/log": "^3.0",
         "slevomat/coding-standard": "^8.25",
         "squizlabs/php_codesniffer": "^4.0",
