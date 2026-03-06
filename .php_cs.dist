@@ -2,8 +2,8 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in([
-        __DIR__ . '/lib',
         __DIR__ . '/metadata/simplesamlphp',
+        __DIR__ . '/src',
         __DIR__ . '/stubs',
         __DIR__ . '/tests',
     ])

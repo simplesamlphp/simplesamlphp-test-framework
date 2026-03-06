@@ -6,7 +6,6 @@
     <rule ref="PSR12"/>
     <rule ref="phpcs-simplesamlphp.xml"/>
 
-    <file>lib</file>
     <file>metadata/simplesamlphp</file>
     <file>src</file>
 
