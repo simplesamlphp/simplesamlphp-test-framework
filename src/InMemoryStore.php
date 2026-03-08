@@ -16,6 +16,7 @@ use function array_key_exists;
  */
 class InMemoryStore implements ClearableState, StoreInterface
 {
+    /** @var array<mixed> */
     private static array $store = [];
 
 

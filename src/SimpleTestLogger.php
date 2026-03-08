@@ -18,6 +18,7 @@ use function count;
 final class SimpleTestLogger extends AbstractLogger
 {
     /**
+     * @var array<string>
      */
     private array $messages = [];
 
@@ -41,10 +42,12 @@ final class SimpleTestLogger extends AbstractLogger
      * Get all the messages logged at the specified level
      *
      * @param mixed $level
+     * @return array<mixed> $level
      */
     public function getMessagesForLevel($level): array
     {
-        return array_filter($this->messages, function (string $message) use ($level) {
+        // @phpstan-ignore argument.type
+        return array_filter($this->messages, function (array $message) use ($level) {
             return $message['level'] === $level;
         });
     }
@@ -57,7 +60,8 @@ final class SimpleTestLogger extends AbstractLogger
      */
     public function hasMessage(string|Stringable $messageToFind): bool
     {
-        $count = array_filter($this->messages, function ($message) use ($messageToFind) {
+        // @phpstan-ignore argument.type
+        $count = array_filter($this->messages, function (array $message) use ($messageToFind) {
             return $message['message'] === $messageToFind;
         });
 

@@ -206,10 +206,10 @@ class BuiltInServer
      * This function performs an HTTP GET request to the built-in server.
      *
      * @param string $query The query to perform.
-     * @param array $parameters An array (can be empty) with parameters for the requested URI.
-     * @param array $curlopts An array (can be empty) with options for cURL.
+     * @param array<mixed> $parameters An array (can be empty) with parameters for the requested URI.
+     * @param array<mixed> $curlopts An array (can be empty) with options for cURL.
      *
-     * @return array The response obtained from the built-in server.
+     * @return array<mixed> The response obtained from the built-in server.
      */
     public function get(string $query, array $parameters, array $curlopts = []): array
     {
@@ -218,12 +218,12 @@ class BuiltInServer
         $url .= (!empty($parameters)) ? '?' . http_build_query($parameters) : '';
         curl_setopt_array($ch, [
             CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_HEADER => 1,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER => true,
         ]);
         curl_setopt_array($ch, $curlopts);
 
-        /** @var mixed $resp */
+        /** @var string|bool $resp */
         $resp = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         list($header, $body) = explode("\r\n\r\n", $resp, 2);

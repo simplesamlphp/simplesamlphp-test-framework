@@ -22,9 +22,6 @@
         }
     },
     "require": {
-        "php": "^8.3"
-    },
-    "require-dev": {
         "php": "^8.3",
         "ext-curl": "*",
 

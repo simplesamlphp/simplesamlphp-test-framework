@@ -16,11 +16,15 @@ class StateClearer
 {
     /**
      * Global state to restore between test runs
+     *
+     * @var array<mixed>
      */
     private array $backups = [];
 
     /**
      * Class that implement \SimpleSAML\Utils\ClearableState and should have clearInternalState called between tests
+     *
+     * @var array<mixed>
      */
     private array $clearableState = [
         Configuration::class,
@@ -31,6 +35,8 @@ class StateClearer
 
     /**
      * Environmental variables to unset
+     *
+     * @var array<mixed>
      */
     private array $vars_to_unset = ['SIMPLESAMLPHP_CONFIG_DIR'];
 
