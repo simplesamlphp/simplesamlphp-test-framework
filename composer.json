@@ -12,15 +12,19 @@
     ],
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\TestUtils\\": "src/"
+            "SimpleSAML\\TestUtils\\": "lib/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "SimpleSAML\\TestUtils\\": "src/",
             "SimpleSAML\\Test\\TestUtils\\": "tests/src/"
         }
     },
     "require": {
+        "php": "^8.3"
+    },
+    "require-dev": {
         "php": "^8.3",
         "ext-curl": "*",
 
@@ -32,12 +36,11 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^12.3 || ^13.0",
         "psr/log": "^3.0",
+        "simplesamlphp/simplesamlphp": "^2.5@dev",
         "slevomat/coding-standard": "^8.25",
         "squizlabs/php_codesniffer": "^4.0",
-        "symfony/phpunit-bridge": "^8.0"
-    },
-    "require-dev": {
-        "simplesamlphp/simplesamlphp": "^2.5@dev"
+        "symfony/phpunit-bridge": "^8.0",
+        "twig/twig": "~3.23"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
