@@ -43,13 +43,12 @@ jobs:
           tools: phive
           php-version: ${{ inputs.php-version }}
           coverage: "none"
+          tools: composer
+          # A conflict exists between overtrue/phplint and redis
           extensions: :redis
 
       - name: Install overtrue/phplint (v9.7)
-        run: |
-          sleep $((random % 10))
-          phive install overtrue/phplint@~9.7.1 --force-accept-unsigned --target ./bin
+        run: composer require overtrue/phplint
 
       - name: Lint PHP files
-        run: |
-          ./bin/phplint --no-cache --no-progress -v
+        run: vendor/bin/phplint --no-cache --no-progress -v
