@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\TestUtils;
+namespace SimpleSAML\Test\TestUtils;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\ConfigurationError;
+use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Test that ensures state doesn't spill over between tests
