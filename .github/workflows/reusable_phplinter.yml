@@ -40,10 +40,9 @@ jobs:
       - name: Setup PHP runtime
         uses: shivammathur/setup-php@v2
         with:
-          tools: phive
+          tools: composer, phive
           php-version: ${{ inputs.php-version }}
           coverage: "none"
-          tools: composer
           # A conflict exists between overtrue/phplint and redis
           extensions: :redis
 
