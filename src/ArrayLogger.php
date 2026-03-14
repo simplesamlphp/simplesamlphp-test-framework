@@ -7,8 +7,6 @@ namespace SimpleSAML\TestUtils;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger\LoggingHandlerInterface;
 
-use function array_merge;
-
 /**
  */
 class ArrayLogger implements LoggingHandlerInterface
@@ -28,7 +26,7 @@ class ArrayLogger implements LoggingHandlerInterface
 
     public function log(int $level, string $str): void
     {
-        $this->logs[$level] = array_merge($this->logs[$level], [$str]);
+        $this->logs[$level][] = $str;
     }
 
 
