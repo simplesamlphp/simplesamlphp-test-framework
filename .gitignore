@@ -5,4 +5,5 @@ cs_fixer_tmp*
 vendor/*
 build/*
 .phpunit.result.cache
+.phpunit.cache
 /super-linter-output/
