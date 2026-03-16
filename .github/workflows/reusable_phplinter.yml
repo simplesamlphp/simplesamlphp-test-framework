@@ -50,4 +50,4 @@ jobs:
         run: composer require overtrue/phplint
 
       - name: Lint PHP files
-        run: vendor/bin/phplint --no-cache --no-progress -v
+        run: vendor/bin/phplint --exclude=vendor --no-cache --no-progress -v
