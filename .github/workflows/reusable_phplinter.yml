@@ -40,14 +40,12 @@ jobs:
       - name: Setup PHP runtime
         uses: shivammathur/setup-php@v2
         with:
-          tools: composer, phive
+          tools: phive
           php-version: ${{ inputs.php-version }}
           coverage: "none"
-          # A conflict exists between overtrue/phplint and redis
           extensions: :redis
 
-      - name: Install overtrue/phplint (v9.7)
-        run: composer require overtrue/phplint --ignore-platform-reqs
-
+      - name: Install overtrue/phplint (latest)
+        run: phive install overtrue/phplint --force-accept-unsigned --target ./bin
       - name: Lint PHP files
-        run: vendor/bin/phplint --exclude=vendor --no-cache --no-progress -v
+        run: ./bin/phplint --no-cache --no-progress -v
