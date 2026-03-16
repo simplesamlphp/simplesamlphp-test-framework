@@ -47,7 +47,7 @@ jobs:
           extensions: :redis
 
       - name: Install overtrue/phplint (v9.7)
-        run: composer require overtrue/phplint
+        run: composer require overtrue/phplint --ignore-platform-reqs
 
       - name: Lint PHP files
         run: vendor/bin/phplint --exclude=vendor --no-cache --no-progress -v
