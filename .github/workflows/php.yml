@@ -194,7 +194,6 @@ jobs:
         run: |
           composer-unused \
           --excludePackage=icanhazstring/composer-unused \
-          --excludePackage=maglnet/composer-require-checker \
           --excludePackage=phpstan/phpstan \
           --excludePackage=phpstan/extension-installer \
           --excludePackage=phpstan/phpstan-mockery \
