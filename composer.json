@@ -26,7 +26,6 @@
         "ext-curl": "*",
 
         "icanhazstring/composer-unused": "^0.9",
-        "maglnet/composer-require-checker": "^4.19",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-mockery": "^2.0",
