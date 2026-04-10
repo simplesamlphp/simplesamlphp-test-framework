@@ -1,4 +1,15 @@
 {
   "symbol-whitelist": [
+    "SimpleSAML\\Configuration",
+    "SimpleSAML\\Logger\\LoggingHandlerInterface",
+    "SimpleSAML\\Metadata\\MetaDataStorageHandler",
+    "SimpleSAML\\Module",
+    "SimpleSAML\\Session",
+    "SimpleSAML\\Store\\StoreFactory",
+    "SimpleSAML\\Store\\StoreInterface",
+    "SimpleSAML\\Utils",
+    "SimpleSAML\\Utils\\ClearableState",
+    "SimpleSAML\\Utils\\System",
+    "SimpleSAML\\XHTML\\Template"
   ]
 }
