@@ -1,4 +1,8 @@
 ### php-cs-fixer ###
+1
+2
+3
+.phplint.cache
 .php_cs.cache
 composer.lock
 cs_fixer_tmp*
