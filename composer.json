@@ -32,11 +32,13 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^12.3 || ^13.0",
         "psr/log": "^3.0",
-        "simplesamlphp/simplesamlphp": "^2.5",
         "slevomat/coding-standard": "^8.25",
         "squizlabs/php_codesniffer": "^4.0",
         "symfony/phpunit-bridge": "^8.0",
         "twig/twig": "~3.23"
+    },
+    "require-dev": {
+        "simplesamlphp/simplesamlphp": "^2.5"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",

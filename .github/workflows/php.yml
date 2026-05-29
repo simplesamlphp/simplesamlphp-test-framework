@@ -20,7 +20,7 @@ jobs:
       matrix:
         php-version: ['8.3', '8.4', '8.5']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.11.4
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.11.5
     with:
       php-version: ${{ matrix.php-version }}
 
@@ -29,7 +29,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.11.4
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.11.5
     with:
       enable_eslinter: false
       enable_jsonlinter: true
@@ -78,7 +78,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
@@ -141,7 +141,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**\composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
@@ -178,7 +178,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Validate composer.json and composer.lock
@@ -188,7 +188,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Check code for hard dependencies missing in composer.json
-        run: composer-require-checker check composer.json
+        run: composer-require-checker check --config-file=tools/composer-require-checker.json composer.json
 
       - name: Check code for unused dependencies in composer.json
         run: |
@@ -241,7 +241,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
@@ -269,7 +269,7 @@ jobs:
           path: ${{ github.workspace }}/build
 
       - name: Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
@@ -285,6 +285,6 @@ jobs:
       (needs.unit-tests-linux.result == 'success' && needs.coverage.result == 'skipped')
 
     steps:
-      - uses: geekyeggo/delete-artifact@v5
+      - uses: geekyeggo/delete-artifact@v6
         with:
           name: coverage-data

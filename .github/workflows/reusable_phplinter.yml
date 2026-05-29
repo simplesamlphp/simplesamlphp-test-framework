@@ -47,5 +47,8 @@ jobs:
 
       - name: Install overtrue/phplint (latest)
         run: phive install overtrue/phplint --force-accept-unsigned --target ./bin
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.PAT_TOKEN }}
+
       - name: Lint PHP files
         run: ./bin/phplint --no-cache --no-progress -v
