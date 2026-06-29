@@ -8,7 +8,6 @@ use InvalidArgumentException;
 use SimpleSAML\Utils;
 
 use function array_shift;
-use function curl_close;
 use function curl_exec;
 use function curl_getinfo;
 use function curl_init;
@@ -235,7 +234,6 @@ class BuiltInServer
             list($name, $value) = explode(':', $header, 2);
             $headers[trim($name)] = trim($value);
         }
-        curl_close($ch);
 
         return [
             'code' => $code,
