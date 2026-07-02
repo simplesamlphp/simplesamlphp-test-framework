@@ -19,7 +19,7 @@ on:  # yamllint disable-line rule:truthy
         default: ${{ github.ref }}
 
 env:
-  supported: '["8.3", "8.4", "8.5", "8.6"]'
+  supported: '["8.5", "8.6"]'
 
 jobs:
   linter:
