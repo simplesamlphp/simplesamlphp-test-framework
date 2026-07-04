@@ -57,7 +57,7 @@ jobs:
           extensions: ctype, date, dom, fileinfo, filter, hash, json, mbstring, mysql, openssl, pcre,\
             pdo, pdo_sqlite, posix, soap, sodium, spl, xdebug, xml
           tools: composer
-          ini-values: error_reporting=E_ALL, pcov.directory=.
+          ini-values: error_reporting=E_ALL, display_errors=on, pcov.directory=.
           coverage: pcov
 
       - name: Setup problem matchers for PHP
@@ -120,7 +120,7 @@ jobs:
           extensions: ctype, dom, date, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre,\
             pdo, pdo_sqlite, posix, soap, sodium, spl, xdebug, xml, zip
           tools: composer
-          ini-values: error_reporting=E_ALL
+          ini-values: error_reporting=E_ALL, display_errors=on
           coverage: none
 
       - name: Setup problem matchers for PHP
