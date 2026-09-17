@@ -28,7 +28,9 @@ jobs:
     steps:
       - name: Supported version check
         if: contains(fromJSON(env.supported), inputs.php-version) == false
-        run: exit 1
+        run: |
+          echo "Unsupported version: ${{ inputs.php-version }}"
+          exit 1
 
       - name: Checkout Code
         uses: actions/checkout@v6
