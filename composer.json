@@ -34,8 +34,12 @@
         "symfony/phpunit-bridge": "^8.0"
     },
     "require-dev": {
+        "ext-curl": "*",
+
         "phpunit/phpunit": "^13.0",
-        "simplesamlphp/simplesamlphp": "^2.5"
+        "psr/log": "^3.0",
+        "simplesamlphp/simplesamlphp": "^2.5",
+        "twig/twig": " ^3.0"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
