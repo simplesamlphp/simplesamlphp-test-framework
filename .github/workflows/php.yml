@@ -57,7 +57,7 @@ jobs:
           extensions: ctype, date, dom, fileinfo, filter, hash, json, mbstring, mysql, openssl, pcre,\
             pdo, pdo_sqlite, posix, soap, sodium, spl, xdebug, xml
           tools: composer
-          ini-values: error_reporting=E_ALL, pcov.directory=.
+          ini-values: error_reporting=E_ALL, display_errors=on, pcov.directory=.
           coverage: pcov
 
       - name: Setup problem matchers for PHP
@@ -120,7 +120,7 @@ jobs:
           extensions: ctype, dom, date, fileinfo, filter, hash, intl, json, mbstring, mysql, openssl, pcre,\
             pdo, pdo_sqlite, posix, soap, sodium, spl, xdebug, xml, zip
           tools: composer
-          ini-values: error_reporting=E_ALL
+          ini-values: error_reporting=E_ALL, display_errors=on
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -189,8 +189,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: Check code for unused or hard dependencies missing in composer.json
-        run: composer-dependency-analyser --config=tools/composer-dependency-analyser.php
+      - name: Check code for missing or unused dependencies
+        run: composer-dependency-analyser --verbose --config=tools/composer-dependency-analyser.php
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs

@@ -22,7 +22,6 @@
     },
     "require": {
         "php": "^8.5",
-        "ext-curl": "*",
 
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
@@ -33,8 +32,7 @@
         "shipmonk/composer-dependency-analyser": "^1.8",
         "slevomat/coding-standard": "^8.25",
         "squizlabs/php_codesniffer": "^4.0",
-        "symfony/phpunit-bridge": "^8.0",
-        "twig/twig": "~3.23"
+        "symfony/phpunit-bridge": "^8.0"
     },
     "require-dev": {
        "simplesamlphp/simplesamlphp": "^2.5"

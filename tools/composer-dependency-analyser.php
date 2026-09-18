@@ -1,40 +1,41 @@
 <?php
 
+declare(strict_types=1);
+
 use ShipMonk\ComposerDependencyAnalyser\Config\Configuration;
 use ShipMonk\ComposerDependencyAnalyser\Config\ErrorType;
 
-$config = new Configuration();
-
-return $config
-    // ext-curl is required; functions are used via `use function`
-    ->ignoreErrorsOnExtension('ext-curl', [ErrorType::UNUSED_DEPENDENCY])
-
-    // Intentional: this package is a test framework, so these live in "require"
-    // but are only referenced from test/dev paths
-    ->ignoreErrorsOnPackages([
-        'phpunit/phpunit',
-        'psr/log',
-        'twig/twig',
-    ], [ErrorType::PROD_DEPENDENCY_ONLY_IN_DEV])
-
+return (new Configuration())
+    // Composer dependencies – never referenced from PHP source
     ->ignoreErrorsOnPackage(
-        'simplesamlphp/simplesamlphp',
-        [ErrorType::DEV_DEPENDENCY_IN_PROD]
-    )
-
-    // Tooling / meta packages that are intentionally declared but never
-    // referenced from scanned PHP sources (same set you previously
-    // excluded with composer-unused)
-    ->ignoreErrorsOnPackages([
         'phpstan/extension-installer',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'phpstan/phpstan',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'phpstan/phpstan-mockery',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'phpstan/phpstan-phpunit',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'shipmonk/composer-dependency-analyser',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'slevomat/coding-standard',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'squizlabs/php_codesniffer',
+        [ErrorType::UNUSED_DEPENDENCY]
+    )
+    ->ignoreErrorsOnPackage(
         'symfony/phpunit-bridge',
-    ], [ErrorType::UNUSED_DEPENDENCY])
-
-    // Optional: stop the tool from complaining about ignores that no longer match
-    ->disableReportingUnmatchedIgnores();
+        [ErrorType::UNUSED_DEPENDENCY]
+    );
