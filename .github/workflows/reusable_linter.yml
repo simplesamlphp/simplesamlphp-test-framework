@@ -124,7 +124,7 @@ jobs:
         run: |
           ./node_modules/.bin/stylelint \
             -f verbose \
-            -c=${{ inputs.stylelinter-config }} ${{ inputs.stylelinter-pattern }}
+            -c ${{ inputs.stylelinter-config }} ${{ inputs.stylelinter-pattern }}
 
   yaml-linter:
     if: inputs.enable_yamllinter == true
